@@ -192,7 +192,7 @@ const stats = [
 
 // Contact information
 const contactInfo = {
-    email: "your.email@example.com",
+    email: "reminmohammed123@gmail.com",
     discord: "_remin_",
     github: "github.com/anxxity",
     socialLinks: {
