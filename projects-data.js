@@ -1,23 +1,25 @@
 // FiveM Projects Data
 const fivemProjects = [
-    {
-        id: 1,
-        title: "Advanced Banking System",
-        description: "Complete banking solution with ATMs, loans, credit cards, and transaction history. Features real-time notifications, multi-currency support, and admin management panel.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Banking+System",
-        technologies: ["Lua", "MySQL", "ESX", "HTML/CSS"],
-        features: [
-            "ATM Network Integration",
-            "Loan Management System", 
-            "Credit Card Processing",
-            "Transaction History",
-            "Multi-Currency Support",
-            "Admin Dashboard"
-        ],
-        github: "#",
-        demo: "#",
-        category: "economy"
-    },
+   {
+  id: 1,
+  title: "Safezone Creator",
+  description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, per-zone vehicle speed limits, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
+  image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Safezone+Creator",
+  technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
+  features: [
+    "In-game safezone creation & editing(polyzone)",
+    "Whitelisted weapons & job-based weapon rules",
+    "Per-zone vehicle speed limit",
+    "Custom on-screen text / notifications",
+    "Enter/exit events for scripts (e.g., disable PvP, heal, etc.)",
+    "Persist zones to JSON/SQL",
+    "Low-overhead, client-side optimization"
+  ],
+  github: "#",
+  demo: "#",
+  category: "utilities"
+},
+
     {
         id: 2,
         title: "Custom Vehicle System",
