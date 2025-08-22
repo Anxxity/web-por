@@ -201,7 +201,7 @@ const contactInfo = {
         github: "https://github.com/anxxity",
         discord: "https://discord.gg/",
         twitter: "https://twitter.com/",
-        linkedin: "https://linkedin.com/in/"
+        linkedin: "https://www.linkedin.com/in/remin-mohammed-062426197/"
     }
 };
 
