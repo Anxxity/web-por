@@ -159,8 +159,9 @@ const fivemProjects = [
 ];
 
 
-const roboticsProjects = [
-    {
+
+const otherProjects = [
+     {
         id: 1,
         title: "Eye Tracking Wheelchair",
         description: "Automated wheelchair controlled via eye-tracking using Raspberry Pi and Arduino.",
@@ -264,70 +265,6 @@ const roboticsProjects = [
         github: "#",
         demo: "#",
         category: "robotics"
-    }
-];
-
-
-const otherProjects = [
-    {
-        id: 1,
-        title: "E-Commerce Platform",
-        description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-        image: "https://via.placeholder.com/400x250/2563eb/ffffff?text=E-Commerce",
-        technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-        github: "#",
-        demo: "#",
-        category: "web"
-    },
-    {
-        id: 2,
-        title: "Task Management App",
-        description: "Collaborative task management application with real-time updates, team collaboration, and project tracking.",
-        image: "https://via.placeholder.com/400x250/2563eb/ffffff?text=Task+Manager",
-        technologies: ["Vue.js", "Express", "PostgreSQL", "Socket.io"],
-        github: "#",
-        demo: "#",
-        category: "web"
-    },
-    {
-        id: 3,
-        title: "Automation Suite",
-        description: "Collection of automation tools for development workflows, including CI/CD pipelines and testing frameworks.",
-        image: "https://via.placeholder.com/400x250/059669/ffffff?text=Automation+Tools",
-        technologies: ["Python", "Selenium", "Docker", "Jenkins"],
-        github: "#",
-        demo: "#",
-        category: "tools"
-    },
-    {
-        id: 4,
-        title: "Mobile Weather App",
-        description: "Cross-platform weather application with location-based forecasts, weather alerts, and interactive maps.",
-        image: "https://via.placeholder.com/400x250/7c3aed/ffffff?text=Weather+App",
-        technologies: ["React Native", "TypeScript", "Weather API", "Maps"],
-        github: "#",
-        demo: "#",
-        category: "mobile"
-    },
-    {
-        id: 5,
-        title: "Data Analytics Dashboard",
-        description: "Interactive dashboard for data visualization and analytics with real-time charts and reporting features.",
-        image: "https://via.placeholder.com/400x250/dc2626/ffffff?text=Analytics+Dashboard",
-        technologies: ["D3.js", "Python", "Flask", "PostgreSQL"],
-        github: "#",
-        demo: "#",
-        category: "web"
-    },
-    {
-        id: 6,
-        title: "API Gateway",
-        description: "Microservices API gateway with authentication, rate limiting, and request routing capabilities.",
-        image: "https://via.placeholder.com/400x250/059669/ffffff?text=API+Gateway",
-        technologies: ["Go", "Redis", "Docker", "Kubernetes"],
-        github: "#",
-        demo: "#",
-        category: "tools"
     }
 ];
 
