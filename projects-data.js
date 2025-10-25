@@ -21,100 +21,10 @@ const fivemProjects = [
     },
     {
         id: 2,
-        title: "Custom Vehicle System",
-        description: "Dynamic vehicle spawning and customization system with persistent storage. Includes vehicle ownership, modifications, and rental system.",
+        title: "pvp leaderboard kkpp",
+        description: "A pvp leaderboard for kkpp fivem server",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Vehicle+System",
-        technologies: ["Lua", "JavaScript", "QBCore", "MySQL"],
-        features: [
-            "Vehicle Ownership System",
-            "Custom Modifications",
-            "Rental System",
-            "Garage Management",
-            "Vehicle Insurance",
-            "Performance Tuning"
-        ],
-        github: "#",
-        demo: "#",
-        category: "vehicles"
-    },
-    {
-        id: 3,
-        title: "Roleplay Framework",
-        description: "Complete framework for immersive roleplay servers with job systems, character management, and economy integration.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=RP+Framework",
-        technologies: ["Lua", "HTML/CSS", "JavaScript", "Framework"],
-        features: [
-            "Character Management",
-            "Job System Integration",
-            "Economy Framework",
-            "Inventory System",
-            "Housing System",
-            "Admin Tools"
-        ],
-        github: "#",
-        demo: "#",
-        category: "framework"
-    },
-    {
-        id: 4,
-        title: "Police MDT System",
-        description: "Mobile Data Terminal for law enforcement with criminal records, vehicle lookups, and incident reporting.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Police+MDT",
-        technologies: ["Lua", "React", "MySQL", "ESX"],
-        features: [
-            "Criminal Database",
-            "Vehicle Registration",
-            "Incident Reports",
-            "BOLO System",
-            "Officer Management",
-            "Evidence Tracking"
-        ],
-        github: "#",
-        demo: "#",
-        category: "emergency"
-    },
-    {
-        id: 5,
-        title: "Hospital Management",
-        description: "Comprehensive medical system with patient records, medical procedures, and ambulance dispatch.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Hospital+System",
-        technologies: ["Lua", "Vue.js", "MySQL", "QBCore"],
-        features: [
-            "Patient Records",
-            "Medical Procedures",
-            "Ambulance Dispatch",
-            "Pharmacy System",
-            "Medical Billing",
-            "Staff Management"
-        ],
-        github: "#",
-        demo: "#",
-        category: "emergency"
-    },
-    {
-        id: 6,
-        title: "Real Estate System",
-        description: "Property management system with buying, selling, and rental features. Includes property viewing and contract management.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Real+Estate",
-        technologies: ["Lua", "JavaScript", "MySQL", "ESX"],
-        features: [
-            "Property Listings",
-            "Virtual Tours",
-            "Contract Management",
-            "Rental System",
-            "Property Valuation",
-            "Agent Dashboard"
-        ],
-        github: "#",
-        demo: "#",
-        category: "economy"
-    },
-    {
-        id: 7,
-        title: "Leaderboard System",
-        description: "Tracks player kills, deaths, and weapon stats in real-time with a visual leaderboard.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Leaderboard",
-        technologies: ["Lua", "oxmysql", "ESX", "HTML/CSS", "JavaScript"],
+        technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
         features: [
             "Real-time K/D tracking",
             "Weapon statistics",
@@ -123,25 +33,27 @@ const fivemProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "utilities"
+        category: "PvP"
     },
     {
-        id: 8,
-        title: "Chalkboard System",
-        description: "Interactive chalkboard script for roleplay servers allowing dynamic content updates.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Chalkboard+System",
-        technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
+        id: 3,
+        title: "pvp leaderboard Last PvP",
+        description: "A pvp leaderboard for last pvp fivem server",
+        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Vehicle+System",
+          technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
         features: [
-            "Dynamic chalkboard updates",
-            "Teacher/admin content control",
-            "Supports multiple chalkboards"
+           "Real-time K/D tracking",
+           "Top 10 players displayed in ui",
+           "Match history of player",
+            "Easy intergation to other resources",
+            "Simple Ui"
         ],
         github: "#",
         demo: "#",
-        category: "utilities"
+        category: "PvP"
     },
     {
-        id: 9,
+        id: 4,
         title: "PvP Lobby UI",
         description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=PvP+Lobby+UI",
@@ -154,7 +66,7 @@ const fivemProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "utilities"
+        category: "PvP"
     }
 ];
 
