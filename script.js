@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initSmoothScrolling();
     initProjectFilters();
+    initFiveMFilters();
     initContactForm();
     initScrollAnimations();
     initTypingEffect();
@@ -172,56 +173,44 @@ function initSmoothScrolling() {
 
 // Project filtering functionality
 function initProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('#projects .project-card[data-category]');
-
+    const section = document.querySelector('#projects');
+    const filterButtons = section.querySelectorAll('.filter-btn');
+    const projectCards = section.querySelectorAll('.project-card[data-category]');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            
-            // Update active button
+
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
-            // Filter projects
+
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    card.style.display = 'block';
+                card.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
+                if (filter === 'all' || category === filter)
                     card.style.animation = 'fadeInUp 0.5s ease forwards';
-                } else {
-                    card.style.display = 'none';
-                }
             });
         });
     });
 }
 
-function initProjectFilters1() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('#fivem .project-card[data-category]');
-
+function initFiveMFilters() {
+    const section = document.querySelector('#fivem');
+    const filterButtons = section.querySelectorAll('.filter-btn');
+    const projectCards = section.querySelectorAll('.project-card[data-category]');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            
-            // Update active button
+
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
-            // Filter projects
+
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    card.style.display = 'block';
+                card.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
+                if (filter === 'all' || category === filter)
                     card.style.animation = 'fadeInUp 0.5s ease forwards';
-                } else {
-                    card.style.display = 'none';
-                }
             });
         });
     });
