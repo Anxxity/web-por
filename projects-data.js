@@ -9,11 +9,9 @@ const fivemProjects = [
         features: [
             "In-game safezone creation & editing (PolyZone)",
             "Whitelisted weapons & job-based weapon rules",
-            "Per-zone vehicle speed limit",
             "Custom on-screen text / notifications",
             "Enter/exit events for scripts (e.g., disable PvP, heal, etc.)",
-            "Persist zones to JSON/SQL",
-            "Low-overhead, client-side optimization"
+            "Persist zones to JSON/SQL"
         ],
         github: "#",
         demo: "#",
