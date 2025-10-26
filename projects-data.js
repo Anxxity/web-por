@@ -21,7 +21,7 @@ const fivemProjects = [
         id: 2,
         title: "PvP Profile System",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
         technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
         features: [
             "Real-time K/D tracking",
