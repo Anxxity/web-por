@@ -208,6 +208,17 @@ function loadProjects() {
     loadOtherProjects();
 }
 
+
+function isValidUrl(url) {
+    try {
+        new URL(url);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+
+
 // Add project modal functionality
 function createProjectModal(project) {
     const modal = document.createElement('div');
@@ -222,7 +233,8 @@ function createProjectModal(project) {
                         <h2>${project.title}</h2>
                         <p>${project.description}</p>
                         <div class="modal-links">
-                          
+                            ${project.demo && isValidUrl(project.demo) ? `<a href="${project.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
+                            ${project.github && isValidUrl(project.github) ? `<a href="${project.github}" class="btn btn-secondary" target="_blank">View Code</a>` : ''}
                         </div>
                     </div>
                 </div>
@@ -243,8 +255,8 @@ function createProjectModal(project) {
             </div>
         </div>
     `;
-    //   ${project.demo ? `<a href="${project.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
-    //                         ${project.github ? `<a href="${project.github}" class="btn btn-secondary" target="_blank">View Code</a>` : ''}
+
+
 
     // Add modal styles
     const modalStyles = `
