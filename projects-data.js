@@ -187,8 +187,8 @@ const otherProjects = [
            "Keyboard Shortcuts",
            "Fully Customizable"
         ],
-        github: "#",
-        demo: "#",
+        github: "https://github.com/Anxxity/cheap-deck",
+        demo: "https://github.com/Anxxity/cheap-deck",
         category: "Raspberry"
     }
 ];
