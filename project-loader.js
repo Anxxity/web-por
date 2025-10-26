@@ -223,7 +223,7 @@ function createProjectModal(project) {
                         <p>${project.description}</p>
                         <div class="modal-links">
                             ${project.demo ? `<a href="${project.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
-                            ${project.github ? `<a href="${project.github}" class="btn btn-secondary" target="_blank">View Code</a>` : ''}
+                            ${project.github ? `<a href="${project.github}" class="btn btn-secondary disable" target="_blank">View Code</a>` : ''}
                         </div>
                     </div>
                 </div>
