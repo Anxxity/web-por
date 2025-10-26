@@ -922,6 +922,12 @@ body.modal-open {
     animation: spin 1s ease-in-out infinite;
 }
 
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }

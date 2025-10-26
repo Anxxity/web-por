@@ -222,9 +222,15 @@ function createProjectModal(project) {
                         <h2>${project.title}</h2>
                         <p>${project.description}</p>
                         <div class="modal-links">
-                            ${project.demo ? `<a href="${project.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
-                            ${project.github ? `<a href="${project.github}" class="btn btn-secondary disable" target="_blank">View Code</a>` : ''}
+                            ${project.demo 
+                                ? `<a href="${project.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` 
+                                : `<button class="btn btn-primary" disabled>Live Demo</button>`}
+
+                            ${project.github 
+                                ? `<a href="${project.github}" class="btn btn-secondary" target="_blank">View Code</a>` 
+                                : `<button class="btn btn-secondary" disabled>View Code</button>`}
                         </div>
+
                     </div>
                 </div>
                 ${project.features ? `
