@@ -20,8 +20,8 @@ const fivemProjects = [
     {
         id: 2,
         title: "pvp leaderboard kkpp",
-        description: "A pvp leaderboard for kkpp fivem server",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Vehicle+System",
+        description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
         technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
         features: [
             "Real-time K/D tracking",
@@ -36,8 +36,8 @@ const fivemProjects = [
     {
         id: 3,
         title: "pvp leaderboard Last PvP",
-        description: "A pvp leaderboard for last pvp fivem server",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Vehicle+System",
+        description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
           technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
         features: [
            "Real-time K/D tracking",
@@ -54,7 +54,7 @@ const fivemProjects = [
         id: 4,
         title: "PvP Lobby UI",
         description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=PvP+Lobby+UI",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
         technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
         features: [
             "Lobby creation & joining",
