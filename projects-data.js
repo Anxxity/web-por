@@ -84,7 +84,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Robotics"
     },
     {
         id: 2,
@@ -99,7 +99,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Arduino"
     },
     {
         id: 3,
@@ -114,7 +114,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Arduino"
     },
     {
         id: 4,
@@ -129,7 +129,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Robotics"
     },
     {
         id: 5,
@@ -144,7 +144,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "automation"
+        category: "Arduino"
     },
     {
         id: 6,
@@ -159,7 +159,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Raspberry"
     },
     {
         id: 7,
@@ -174,7 +174,7 @@ const otherProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "robotics"
+        category: "Raspberry"
     }
 ];
 
