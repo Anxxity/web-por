@@ -3,7 +3,7 @@ const fivemProjects = [
     {
         id: 1,
         title: "Safezone Creator",
-        description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, per-zone vehicle speed limits, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
+        description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
         image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
         technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
         features: [
