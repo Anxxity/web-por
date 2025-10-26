@@ -175,6 +175,21 @@ const otherProjects = [
         github: "#",
         demo: "#",
         category: "Raspberry"
+    },
+       {
+        id: 8,
+        title: "cheap deck",
+        description: "A cheap alternative for stream deck . Cheap deck",
+        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Track+Rover",
+        technologies: [ "Arduino Uno", "tft touch screen"],
+        features: [
+           "Touchscreen Interface",
+           "Keyboard Shortcuts",
+           "Fully Customizable"
+        ],
+        github: "#",
+        demo: "#",
+        category: "Raspberry"
     }
 ];
 
