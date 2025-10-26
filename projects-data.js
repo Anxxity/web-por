@@ -15,7 +15,7 @@ const fivemProjects = [
         ],
         github: "#",
         demo: "#",
-        category: "utilities"
+        category: "util"
     },
     {
         id: 2,
