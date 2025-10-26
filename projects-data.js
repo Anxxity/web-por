@@ -19,7 +19,7 @@ const fivemProjects = [
     },
     {
         id: 2,
-        title: "pvp leaderboard kkpp",
+        title: "PvP Profile System",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
         image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
         technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
@@ -35,7 +35,7 @@ const fivemProjects = [
     },
     {
         id: 3,
-        title: "pvp leaderboard Last PvP",
+        title: "PvP Leaderboard",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
         image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
           technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
