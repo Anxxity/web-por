@@ -57,26 +57,28 @@ function initThemeToggle() {
         updateNavbarBackground();
     }
 
-    function updateNavbarBackground() {
-        const navbar = document.getElementById('navbar');
-        const currentTheme = document.body.getAttribute('data-theme');
+}
 
-        if (window.scrollY > 50) {
-            if (currentTheme === 'dark') {
-                navbar.style.background = 'rgba(17, 24, 39, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
+// Update navbar background function (used by both theme toggle and scroll)
+function updateNavbarBackground() {
+    const navbar = document.getElementById('navbar');
+    const currentTheme = document.body.getAttribute('data-theme');
+
+    if (window.scrollY > 50) {
+        if (currentTheme === 'dark') {
+            navbar.style.background = 'rgba(17, 24, 39, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
         } else {
-            if (currentTheme === 'dark') {
-                navbar.style.background = 'rgba(17, 24, 39, 0.95)';
-                navbar.style.boxShadow = 'none';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        }
+    } else {
+        if (currentTheme === 'dark') {
+            navbar.style.background = 'rgba(17, 24, 39, 0.95)';
+            navbar.style.boxShadow = 'none';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
         }
     }
 }
@@ -175,7 +177,6 @@ function initSmoothScrolling() {
 function initProjectFilters() {
     const section = document.querySelector('#projects');
     const filterButtons = section.querySelectorAll('.filter-btn');
-    const projectCards = section.querySelectorAll('.project-card[data-category]');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -184,12 +185,8 @@ function initProjectFilters() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                card.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
-                if (filter === 'all' || category === filter)
-                    card.style.animation = 'fadeInUp 0.5s ease forwards';
-            });
+            // Reload projects with new filter
+            loadOtherProjects(filter);
         });
     });
 }
@@ -197,7 +194,6 @@ function initProjectFilters() {
 function initFiveMFilters() {
     const section = document.querySelector('#fivem');
     const filterButtons = section.querySelectorAll('.filter-btn');
-    const projectCards = section.querySelectorAll('.project-card[data-category]');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -206,12 +202,8 @@ function initFiveMFilters() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                card.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
-                if (filter === 'all' || category === filter)
-                    card.style.animation = 'fadeInUp 0.5s ease forwards';
-            });
+            // Reload projects with new filter
+            loadFiveMProjects(filter);
         });
     });
 }

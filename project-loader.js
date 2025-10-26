@@ -7,30 +7,83 @@ document.addEventListener('DOMContentLoaded', function() {
     loadContactInfo();
 });
 
-// Load and display FiveM projects
-function loadFiveMProjects() {
+// Pagination state
+let currentFivemPage = 1;
+let currentProjectsPage = 1;
+const projectsPerPage = 9;
+
+// Filter state
+let currentFivemFilter = 'all';
+let currentProjectsFilter = 'all';
+
+// Load and display FiveM projects with pagination and filtering
+function loadFiveMProjects(filter = currentFivemFilter) {
     const fivemContainer = document.querySelector('#fivem .projects-grid');
     if (!fivemContainer) return;
 
+    // Reset to first page when filter changes
+    if (filter !== currentFivemFilter) {
+        currentFivemPage = 1;
+    }
+    
+    // Update filter state
+    currentFivemFilter = filter;
+
+    // Clear existing content
     fivemContainer.innerHTML = '';
 
-    fivemProjects.forEach(project => {
+    // Filter projects
+    const filteredProjects = filter === 'all' 
+        ? fivemProjects 
+        : fivemProjects.filter(project => project.category === filter);
+
+    // Calculate pagination
+    const startIndex = (currentFivemPage - 1) * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+    const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
+
+    paginatedProjects.forEach(project => {
         const projectCard = createFiveMProjectCard(project);
         fivemContainer.appendChild(projectCard);
     });
+
+    // Add pagination controls if needed
+    addPaginationControls('#fivem', filteredProjects.length, 'fivem');
 }
 
-// Load and display other projects
-function loadOtherProjects() {
+// Load and display other projects with pagination and filtering
+function loadOtherProjects(filter = currentProjectsFilter) {
     const projectsContainer = document.querySelector('#projects .projects-grid');
     if (!projectsContainer) return;
 
+    // Reset to first page when filter changes
+    if (filter !== currentProjectsFilter) {
+        currentProjectsPage = 1;
+    }
+    
+    // Update filter state
+    currentProjectsFilter = filter;
+
+    // Clear existing content
     projectsContainer.innerHTML = '';
 
-    otherProjects.forEach(project => {
+    // Filter projects
+    const filteredProjects = filter === 'all' 
+        ? otherProjects 
+        : otherProjects.filter(project => project.category === filter);
+
+    // Calculate pagination
+    const startIndex = (currentProjectsPage - 1) * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+    const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
+
+    paginatedProjects.forEach(project => {
         const projectCard = createProjectCard(project);
         projectsContainer.appendChild(projectCard);
     });
+
+    // Add pagination controls if needed
+    addPaginationControls('#projects', filteredProjects.length, 'projects');
 }
 
 // Create FiveM project card
@@ -521,3 +574,141 @@ function addProjectIds() {
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(addProjectIds, 100);
 });
+
+// Add pagination controls
+function addPaginationControls(sectionSelector, totalProjects, pageType) {
+    // Remove existing pagination if any
+    const existingPagination = document.querySelector(`${sectionSelector} .pagination`);
+    if (existingPagination) {
+        existingPagination.remove();
+    }
+
+    // Only add pagination if there are more than 9 projects
+    if (totalProjects <= projectsPerPage) {
+        return;
+    }
+
+    const section = document.querySelector(sectionSelector);
+    const container = section.querySelector('.container');
+    
+    const totalPages = Math.ceil(totalProjects / projectsPerPage);
+    const currentPage = pageType === 'fivem' ? currentFivemPage : currentProjectsPage;
+
+    const pagination = document.createElement('div');
+    pagination.className = 'pagination';
+    pagination.innerHTML = `
+        <button class="pagination-btn prev" ${currentPage === 1 ? 'disabled' : ''}>
+            <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <div class="pagination-info">
+            Page ${currentPage} of ${totalPages}
+        </div>
+        <button class="pagination-btn next" ${currentPage === totalPages ? 'disabled' : ''}>
+            Next <i class="fas fa-chevron-right"></i>
+        </button>
+    `;
+
+    // Add pagination styles if not already added
+    if (!document.querySelector('#pagination-styles')) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'pagination-styles';
+        styleSheet.textContent = `
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                margin-top: 3rem;
+                padding: 1.5rem 0;
+            }
+
+            .pagination-btn {
+                padding: 0.75rem 1.5rem;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .pagination-btn:hover:not(:disabled) {
+                background: var(--secondary-color);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+
+            .pagination-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .pagination-info {
+                font-size: 1rem;
+                font-weight: 500;
+                color: var(--text-primary);
+            }
+
+            @media (max-width: 768px) {
+                .pagination {
+                    gap: 1rem;
+                }
+
+                .pagination-btn {
+                    padding: 0.5rem 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .pagination-info {
+                    font-size: 0.9rem;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
+
+    // Insert pagination after the grid
+    const grid = section.querySelector('.projects-grid');
+    grid.after(pagination);
+
+    // Add event listeners
+    pagination.querySelector('.prev').addEventListener('click', () => {
+        if (pageType === 'fivem') {
+            if (currentFivemPage > 1) {
+                currentFivemPage--;
+                loadFiveMProjects(currentFivemFilter);
+                // Scroll to top of section
+                document.getElementById('fivem').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            if (currentProjectsPage > 1) {
+                currentProjectsPage--;
+                loadOtherProjects(currentProjectsFilter);
+                // Scroll to top of section
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+
+    pagination.querySelector('.next').addEventListener('click', () => {
+        if (pageType === 'fivem') {
+            if (currentFivemPage < totalPages) {
+                currentFivemPage++;
+                loadFiveMProjects(currentFivemFilter);
+                // Scroll to top of section
+                document.getElementById('fivem').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            if (currentProjectsPage < totalPages) {
+                currentProjectsPage++;
+                loadOtherProjects(currentProjectsFilter);
+                // Scroll to top of section
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+}
