@@ -173,7 +173,8 @@ function initSmoothScrolling() {
 // Project filtering functionality
 function initProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card[data-category]');
+    const projectCards = document.querySelectorAll('#projects .project-card[data-category]');
+
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
