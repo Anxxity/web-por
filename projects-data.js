@@ -65,6 +65,22 @@ const fivemProjects = [
         github: "#",
         demo: "#",
         category: "PvP"
+    },
+    {
+        id: 5,
+        title: "rm_radiolist",
+        description: "based on the original script X-RADIOLIST. I updated the visual style and added a movable radio list.",
+        image: "https://github.com/user-attachments/assets/d7ead535-2691-498a-a966-658871a72f10",
+        technologies: ["Lua", "HTML/CSS", "JavaScript"],
+        features: [
+            "Config to show players’ RP name",
+            "color of each player when they talk on radio",
+            "name radio channels in config",
+            "Interactive and immersive UI"
+        ],
+        github: "https://github.com/Anxxity/rm_radiolist/edit/main/README.md",
+        demo: "#",
+        category: "util"
     }
 ];
 
