@@ -78,8 +78,8 @@ const fivemProjects = [
             "name radio channels in config",
             "Interactive and immersive UI"
         ],
-        github: "https://github.com/Anxxity/rm_radiolist/edit/main/README.md",
-        demo: "#",
+        github: "https://github.com/Anxxity/rm_radiolist",
+        demo: "https://github.com/user-attachments/assets/d7ead535-2691-498a-a966-658871a72f10",
         category: "util"
     }
 ];
