@@ -70,7 +70,7 @@ const fivemProjects = [
         id: 5,
         title: "rm_radiolist",
         description: "based on the original script X-RADIOLIST. I updated the visual style and added a movable radio list.",
-        image: "https://github.com/user-attachments/assets/d7ead535-2691-498a-a966-658871a72f10",
+        image: "https://github.com/user-attachments/assets/09803e71-e50a-417a-932a-674689bc9447",
         technologies: ["Lua", "HTML/CSS", "JavaScript"],
         features: [
             "Config to show players’ RP name",
