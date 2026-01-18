@@ -1,27 +1,24 @@
-// DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
     initThemeToggle();
     initNavigation();
     initSmoothScrolling();
     initProjectFilters();
     initFiveMFilters();
+    initTutorialFilters();
     initContactForm();
     initScrollAnimations();
     initTypingEffect();
+    initTutorialModal();
 });
 
-// Theme toggle functionality
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
 
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
 
-    // Set initial navbar background
     setTimeout(() => {
         updateNavbarBackground();
     }, 100);
@@ -44,7 +41,6 @@ function initThemeToggle() {
             themeToggle.setAttribute('aria-label', 'Switch to dark mode');
         }
 
-        // Update meta theme-color for mobile browsers
         let metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (!metaThemeColor) {
             metaThemeColor = document.createElement('meta');
@@ -53,13 +49,11 @@ function initThemeToggle() {
         }
         metaThemeColor.content = theme === 'dark' ? '#111827' : '#ffffff';
 
-        // Update navbar background immediately
         updateNavbarBackground();
     }
 
 }
 
-// Update navbar background function (used by both theme toggle and scroll)
 function updateNavbarBackground() {
     const navbar = document.getElementById('navbar');
     const currentTheme = document.body.getAttribute('data-theme');
@@ -83,18 +77,15 @@ function updateNavbarBackground() {
     }
 }
 
-// Navigation functionality
 function initNavigation() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Mobile menu toggle
     mobileMenu.addEventListener('click', function() {
         mobileMenu.classList.toggle('active');
         navMenu.classList.toggle('active');
         
-        // Animate hamburger menu
         const bars = mobileMenu.querySelectorAll('.bar');
         bars.forEach((bar, index) => {
             if (mobileMenu.classList.contains('active')) {
@@ -108,13 +99,11 @@ function initNavigation() {
         });
     });
 
-    // Close mobile menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             mobileMenu.classList.remove('active');
             
-            // Reset hamburger menu
             const bars = mobileMenu.querySelectorAll('.bar');
             bars.forEach(bar => {
                 bar.style.transform = 'none';
@@ -123,12 +112,10 @@ function initNavigation() {
         });
     });
 
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
         updateNavbarBackground();
     });
 
-    // Active navigation link highlighting
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -150,7 +137,6 @@ function initNavigation() {
     });
 }
 
-// Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -162,7 +148,7 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
+                const offsetTop = targetSection.offsetTop - 70;
                 
                 window.scrollTo({
                     top: offsetTop,
@@ -173,7 +159,6 @@ function initSmoothScrolling() {
     });
 }
 
-// Project filtering functionality
 function initProjectFilters() {
     const section = document.querySelector('#projects');
     const filterButtons = section.querySelectorAll('.filter-btn');
@@ -185,7 +170,6 @@ function initProjectFilters() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Reload projects with new filter
             loadOtherProjects(filter);
         });
     });
@@ -202,27 +186,110 @@ function initFiveMFilters() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Reload projects with new filter
             loadFiveMProjects(filter);
         });
     });
 }
 
-// Contact form functionality
+function initTutorialFilters() {
+    const section = document.querySelector('#tutorials');
+    if (!section) return;
+    
+    const filterButtons = section.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            loadTutorials(filter);
+        });
+    });
+}
+
+function initTutorialModal() {
+    document.addEventListener('click', function(e) {
+        const viewBtn = e.target.closest('.view-tutorial-btn');
+        if (!viewBtn) return;
+
+        const tutorialId = parseInt(viewBtn.getAttribute('data-tutorial-id'));
+        const tutorial = tutorials.find(t => t.id === tutorialId);
+        
+        if (tutorial) {
+            showTutorialModal(tutorial);
+        }
+    });
+}
+
+function showTutorialModal(tutorial) {
+    const modal = document.createElement('div');
+    modal.className = 'tutorial-modal active';
+    
+    const contentSections = tutorial.content.map(section => `
+        <div class="tutorial-content-section">
+            <h3>${section.heading}</h3>
+            <div class="tutorial-content-text">${section.text.replace(/\n/g, '<br>')}</div>
+        </div>
+    `).join('');
+
+    modal.innerHTML = `
+        <div class="modal-overlay">
+            <div class="modal-content tutorial-modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="tutorial-modal-header">
+                    <img src="${tutorial.image}" alt="${tutorial.title}">
+                    <div class="tutorial-modal-info">
+                        <h2>${tutorial.title}</h2>
+                        <p>${tutorial.description}</p>
+                        <div class="tutorial-modal-badges">
+                            <span class="difficulty-badge difficulty-${tutorial.difficulty.toLowerCase()}">${tutorial.difficulty}</span>
+                            <span class="duration-badge"><i class="fas fa-clock"></i> ${tutorial.duration}</span>
+                            <span class="category-badge">${tutorial.category.charAt(0).toUpperCase() + tutorial.category.slice(1)}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-modal-body">
+                    ${contentSections}
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    document.body.classList.add('modal-open');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        setTimeout(() => modal.remove(), 300);
+    };
+
+    modal.querySelector('.modal-close').addEventListener('click', closeModal);
+    modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
+    modal.querySelector('.tutorial-modal-content').addEventListener('click', (e) => e.stopPropagation());
+
+    document.addEventListener('keydown', function handleEscape(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', handleEscape);
+        }
+    });
+}
+
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
         const formData = new FormData(this);
         const name = formData.get('name');
         const email = formData.get('email');
         const subject = formData.get('subject');
         const message = formData.get('message');
         
-        // Basic validation
         if (!name || !email || !subject || !message) {
             showNotification('Please fill in all fields', 'error');
             return;
@@ -233,14 +300,12 @@ function initContactForm() {
             return;
         }
         
-        // Simulate form submission
         const submitButton = this.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
         
-        // Simulate API call
         setTimeout(() => {
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             contactForm.reset();
@@ -250,21 +315,17 @@ function initContactForm() {
     });
 }
 
-// Email validation helper
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// Notification system
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -274,7 +335,6 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 100px;
@@ -307,22 +367,18 @@ function showNotification(message, type = 'info') {
         line-height: 1;
     `;
     
-    // Add to DOM
     document.body.appendChild(notification);
     
-    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Close functionality
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => notification.remove(), 300);
     });
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.transform = 'translateX(100%)';
@@ -331,7 +387,6 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Scroll animations
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -347,8 +402,7 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.project-card, .skill-item, .stat-item, .about-text, .contact-info, .contact-form');
+    const animatedElements = document.querySelectorAll('.project-card, .tutorial-card, .skill-item, .stat-item, .about-text, .contact-info, .contact-form');
     
     animatedElements.forEach(el => {
         el.style.opacity = '0';
@@ -358,7 +412,6 @@ function initScrollAnimations() {
     });
 }
 
-// Typing effect for hero section
 function initTypingEffect() {
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (!heroSubtitle) return;
@@ -392,22 +445,20 @@ function initTypingEffect() {
         let typeSpeed = isDeleting ? 50 : 100;
         
         if (!isDeleting && charIndex === fullText.length) {
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2000;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             textIndex = (textIndex + 1) % texts.length;
-            typeSpeed = 500; // Pause before next text
+            typeSpeed = 500;
         }
         
         setTimeout(typeEffect, typeSpeed);
     }
     
-    // Start typing effect after a short delay
     setTimeout(typeEffect, 1000);
 }
 
-// Parallax effect for hero section
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -419,7 +470,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Add CSS animations
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeInUp {
@@ -451,7 +501,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Preloader (optional)
 window.addEventListener('load', function() {
     const preloader = document.querySelector('.preloader');
     if (preloader) {
@@ -462,7 +511,6 @@ window.addEventListener('load', function() {
     }
 });
 
-// Performance optimization: Throttle scroll events
 function throttle(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -475,9 +523,7 @@ function throttle(func, wait) {
     };
 }
 
-// Apply throttling to scroll events
 const throttledScrollHandler = throttle(() => {
-    // Scroll-based animations and effects
-}, 16); // ~60fps
+}, 16);
 
 window.addEventListener('scroll', throttledScrollHandler);
