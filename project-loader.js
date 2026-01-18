@@ -1,43 +1,35 @@
-// Project Loader - Dynamically populate projects from data
 document.addEventListener('DOMContentLoaded', function() {
     loadProjects();
     loadPersonalInfo();
     loadSkills();
     loadStats();
     loadContactInfo();
+    loadTutorials();
 });
 
-// Pagination state
 let currentFivemPage = 1;
 let currentProjectsPage = 1;
 const projectsPerPage = 9;
 
-// Filter state
 let currentFivemFilter = 'all';
 let currentProjectsFilter = 'all';
 
-// Load and display FiveM projects with pagination and filtering
 function loadFiveMProjects(filter = currentFivemFilter) {
     const fivemContainer = document.querySelector('#fivem .projects-grid');
     if (!fivemContainer) return;
 
-    // Reset to first page when filter changes
     if (filter !== currentFivemFilter) {
         currentFivemPage = 1;
     }
     
-    // Update filter state
     currentFivemFilter = filter;
 
-    // Clear existing content
     fivemContainer.innerHTML = '';
 
-    // Filter projects
     const filteredProjects = filter === 'all' 
         ? fivemProjects 
         : fivemProjects.filter(project => project.category === filter);
 
-    // Calculate pagination
     const startIndex = (currentFivemPage - 1) * projectsPerPage;
     const endIndex = startIndex + projectsPerPage;
     const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
@@ -47,32 +39,25 @@ function loadFiveMProjects(filter = currentFivemFilter) {
         fivemContainer.appendChild(projectCard);
     });
 
-    // Add pagination controls if needed
     addPaginationControls('#fivem', filteredProjects.length, 'fivem');
 }
 
-// Load and display other projects with pagination and filtering
 function loadOtherProjects(filter = currentProjectsFilter) {
     const projectsContainer = document.querySelector('#projects .projects-grid');
     if (!projectsContainer) return;
 
-    // Reset to first page when filter changes
     if (filter !== currentProjectsFilter) {
         currentProjectsPage = 1;
     }
     
-    // Update filter state
     currentProjectsFilter = filter;
 
-    // Clear existing content
     projectsContainer.innerHTML = '';
 
-    // Filter projects
     const filteredProjects = filter === 'all' 
         ? otherProjects 
         : otherProjects.filter(project => project.category === filter);
 
-    // Calculate pagination
     const startIndex = (currentProjectsPage - 1) * projectsPerPage;
     const endIndex = startIndex + projectsPerPage;
     const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
@@ -82,11 +67,9 @@ function loadOtherProjects(filter = currentProjectsFilter) {
         projectsContainer.appendChild(projectCard);
     });
 
-    // Add pagination controls if needed
     addPaginationControls('#projects', filteredProjects.length, 'projects');
 }
 
-// Create FiveM project card
 function createFiveMProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card fivem-card';
@@ -128,7 +111,6 @@ function createFiveMProjectCard(project) {
     return card;
 }
 
-// Create regular project card
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
@@ -160,27 +142,22 @@ function createProjectCard(project) {
     return card;
 }
 
-// Load personal information
 function loadPersonalInfo() {
-    // Update hero section
     const heroTitle = document.querySelector('.hero-title .gradient-text');
     const heroSubtitle = document.querySelector('.hero-subtitle');
     
     if (heroTitle) heroTitle.textContent = personalInfo.name;
     if (heroSubtitle) heroSubtitle.textContent = personalInfo.title;
 
-    // Update about section
     const aboutText = document.querySelector('.about-text');
     if (aboutText && personalInfo.bio) {
         const paragraphs = personalInfo.bio.map(paragraph => `<p>${paragraph}</p>`).join('');
         aboutText.innerHTML = paragraphs + aboutText.querySelector('.skills').outerHTML;
     }
 
-    // Update page title
     document.title = `${personalInfo.name} - Portfolio | ${personalInfo.title}`;
 }
 
-// Load skills
 function loadSkills() {
     const skillsGrid = document.querySelector('.skills-grid');
     if (!skillsGrid) return;
@@ -198,7 +175,6 @@ function loadSkills() {
     });
 }
 
-// Load statistics
 function loadStats() {
     const statsContainer = document.querySelector('.about-stats');
     if (!statsContainer) return;
@@ -216,9 +192,7 @@ function loadStats() {
     });
 }
 
-// Load contact information
 function loadContactInfo() {
-    // Update contact items
     const contactItems = document.querySelectorAll('.contact-item');
     contactItems.forEach((item, index) => {
         const span = item.querySelector('span');
@@ -237,7 +211,6 @@ function loadContactInfo() {
         }
     });
 
-    // Update social links
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach(link => {
         const icon = link.querySelector('i');
@@ -255,7 +228,6 @@ function loadContactInfo() {
     });
 }
 
-// Main function to load all projects
 function loadProjects() {
     loadFiveMProjects();
     loadOtherProjects();
@@ -272,7 +244,6 @@ function isValidUrl(url) {
 }
 
 
-// Add project modal functionality
 function createProjectModal(project) {
     const modal = document.createElement('div');
     modal.className = 'project-modal';
@@ -309,9 +280,6 @@ function createProjectModal(project) {
         </div>
     `;
 
-
-
-    // Add modal styles
     const modalStyles = `
         .project-modal {
             position: fixed;
@@ -495,7 +463,6 @@ function createProjectModal(project) {
         }
     `;
 
-    // Add styles to head if not already added
     if (!document.querySelector('#modal-styles')) {
         const styleSheet = document.createElement('style');
         styleSheet.id = 'modal-styles';
@@ -506,7 +473,6 @@ function createProjectModal(project) {
     return modal;
 }
 
-// Enhanced project card click handlers
 document.addEventListener('click', function(e) {
     const projectCard = e.target.closest('.project-card');
     if (projectCard && !e.target.closest('.project-link')) {
@@ -523,29 +489,24 @@ document.addEventListener('click', function(e) {
             const modal = createProjectModal(project);
             document.body.appendChild(modal);
 
-            // Prevent body scroll
             document.body.classList.add('modal-open');
 
             setTimeout(() => modal.classList.add('active'), 10);
 
-            // Close modal function
             const closeModal = () => {
                 modal.classList.remove('active');
                 document.body.classList.remove('modal-open');
                 setTimeout(() => modal.remove(), 300);
             };
 
-            // Close modal handlers
             modal.querySelector('.modal-close').addEventListener('click', closeModal);
 
             modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
 
-            // Prevent closing when clicking on modal content
             modal.querySelector('.modal-content').addEventListener('click', (e) => {
                 e.stopPropagation();
             });
 
-            // Close on escape key
             const handleEscape = (e) => {
                 if (e.key === 'Escape') {
                     closeModal();
@@ -557,7 +518,58 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Add project IDs to cards after they're created
+function loadTutorials(filter = 'all') {
+    const tutorialsContainer = document.querySelector('#tutorials-grid');
+    if (!tutorialsContainer) return;
+
+    tutorialsContainer.innerHTML = '';
+
+    const filteredTutorials = filter === 'all' 
+        ? tutorials 
+        : tutorials.filter(tutorial => tutorial.category === filter);
+
+    filteredTutorials.forEach(tutorial => {
+        const tutorialCard = createTutorialCard(tutorial);
+        tutorialsContainer.appendChild(tutorialCard);
+    });
+}
+
+function createTutorialCard(tutorial) {
+    const card = document.createElement('div');
+    card.className = 'tutorial-card';
+    card.setAttribute('data-category', tutorial.category);
+    card.setAttribute('data-tutorial-id', tutorial.id);
+
+    const tags = tutorial.tags ? tutorial.tags.map(tag => 
+        `<span class="tech-tag">${tag}</span>`
+    ).join('') : '';
+
+    card.innerHTML = `
+        <div class="tutorial-image">
+            <img src="${tutorial.image}" alt="${tutorial.title}" loading="lazy">
+            <div class="tutorial-badge">
+                <span class="difficulty-badge difficulty-${tutorial.difficulty.toLowerCase()}">${tutorial.difficulty}</span>
+                <span class="duration-badge"><i class="fas fa-clock"></i> ${tutorial.duration}</span>
+            </div>
+        </div>
+        <div class="tutorial-content">
+            <h3>${tutorial.title}</h3>
+            <p>${tutorial.description}</p>
+            <div class="tutorial-meta">
+                <span class="tutorial-category">${tutorial.category.charAt(0).toUpperCase() + tutorial.category.slice(1)}</span>
+            </div>
+            <div class="tutorial-tech">
+                ${tags}
+            </div>
+            <button class="btn btn-primary view-tutorial-btn" data-tutorial-id="${tutorial.id}">
+                View Tutorial <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    `;
+
+    return card;
+}
+
 function addProjectIds() {
     const fivemCards = document.querySelectorAll('#fivem .project-card');
     fivemCards.forEach((card, index) => {
@@ -570,20 +582,16 @@ function addProjectIds() {
     });
 }
 
-// Call addProjectIds after projects are loaded
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(addProjectIds, 100);
 });
 
-// Add pagination controls
 function addPaginationControls(sectionSelector, totalProjects, pageType) {
-    // Remove existing pagination if any
     const existingPagination = document.querySelector(`${sectionSelector} .pagination`);
     if (existingPagination) {
         existingPagination.remove();
     }
 
-    // Only add pagination if there are more than 9 projects
     if (totalProjects <= projectsPerPage) {
         return;
     }
@@ -608,7 +616,6 @@ function addPaginationControls(sectionSelector, totalProjects, pageType) {
         </button>
     `;
 
-    // Add pagination styles if not already added
     if (!document.querySelector('#pagination-styles')) {
         const styleSheet = document.createElement('style');
         styleSheet.id = 'pagination-styles';
@@ -671,24 +678,20 @@ function addPaginationControls(sectionSelector, totalProjects, pageType) {
         document.head.appendChild(styleSheet);
     }
 
-    // Insert pagination after the grid
     const grid = section.querySelector('.projects-grid');
     grid.after(pagination);
 
-    // Add event listeners
     pagination.querySelector('.prev').addEventListener('click', () => {
         if (pageType === 'fivem') {
             if (currentFivemPage > 1) {
                 currentFivemPage--;
                 loadFiveMProjects(currentFivemFilter);
-                // Scroll to top of section
                 document.getElementById('fivem').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         } else {
             if (currentProjectsPage > 1) {
                 currentProjectsPage--;
                 loadOtherProjects(currentProjectsFilter);
-                // Scroll to top of section
                 document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
@@ -699,14 +702,13 @@ function addPaginationControls(sectionSelector, totalProjects, pageType) {
             if (currentFivemPage < totalPages) {
                 currentFivemPage++;
                 loadFiveMProjects(currentFivemFilter);
-                // Scroll to top of section
+
                 document.getElementById('fivem').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         } else {
             if (currentProjectsPage < totalPages) {
                 currentProjectsPage++;
                 loadOtherProjects(currentProjectsFilter);
-                // Scroll to top of section
                 document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
