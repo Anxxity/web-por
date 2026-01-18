@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials | Step-by-Step Guides</title>
+    <meta name="description" content="Learn how to create FiveM servers, Minecraft servers, and more with our step-by-step tutorials">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="tutorials-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Portfolio</a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#fivem" class="nav-link">FiveM</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#projects" class="nav-link">Projects</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tutorials.html" class="nav-link active">Tutorials</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://remin.tebex.io/" class="nav-link">Tebex</a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="tutorials-hero">
+        <div class="container">
+            <div class="tutorials-hero-content">
+                <h1 class="tutorials-hero-title">Tutorials & Guides</h1>
+                <p class="tutorials-hero-subtitle">Step-by-step guides to help you get started with server creation and setup</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tutorials-section">
+        <div class="container">
+            <div class="tutorial-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="fivem">FiveM</button>
+                <button class="filter-btn" data-filter="minecraft">Minecraft</button>
+                <button class="filter-btn" data-filter="other">Other</button>
+            </div>
+
+            <div class="tutorials-grid" id="tutorials-grid">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 remin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="projects-data.js"></script>
+    <script src="script.js"></script>
+    <script src="tutorials-script.js"></script>
+</body>
+</html>
