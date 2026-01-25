@@ -411,7 +411,7 @@ const tutorials = [
           "title": "ROS 2 (Humble) Python Node – Quickstart Guide",
           "description": "Beginner-friendly guide to setting up a ROS 2 Humble workspace and creating a basic Python node using rclpy. Covers workspace creation, package setup, node structure, entry points, and automatic environment sourcing.",
           "image": "https://raw.githubusercontent.com/ros-infrastructure/artwork/master/distributions/humble/HumbleHawksbill.png",
-          "category": "fivem",
+          "category": "ros",
           "difficulty": "Beginner",
           "duration": "45-60 minutes",
           "content": [
@@ -458,7 +458,6 @@ const tutorials = [
           ],
           "tags": ["ROS 2", "Humble", "Python", "rclpy", "Robotics", "Linux", "Ubuntu"]
         },
-
 ];
 
 
