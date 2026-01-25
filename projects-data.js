@@ -406,6 +406,59 @@ const tutorials = [
           ],
           "tags": ["FiveM", "Linux", "Ubuntu", "Server Setup", "FXServer", "Systemd", "Security", "VPS", "Dedicated Server"]
         },
+        {
+  "id": 3,
+  "title": "ROS 2 (Humble) Python Node – Quickstart Guide",
+  "description": "Beginner-friendly guide to setting up a ROS 2 Humble workspace and creating a basic Python node using rclpy. Covers workspace creation, package setup, node structure, entry points, and automatic environment sourcing.",
+  "image": "https://raw.githubusercontent.com/ros-infrastructure/artwork/master/distributions/humble/HumbleHawksbill.png",
+  "category": "ros2",
+  "difficulty": "Beginner",
+  "duration": "45-60 minutes",
+  "content": [
+    {
+      "heading": "Overview",
+      "text": "This guide walks you through creating a ROS 2 (Humble) workspace and building a simple Python node using rclpy. It is intended for beginners who want to understand the basic ROS 2 Python node lifecycle."
+    },
+    {
+      "heading": "Workspace Setup",
+      "text": "Set up a ROS 2 Python workspace:\n\n```bash\n# Source ROS 2 Humble\nsource /opt/ros/humble/setup.bash\n\n# Create workspace and src directory\nmkdir -p ~/ros2_ws/src\ncd ~/ros2_ws/src\n\n# Create a Python package\nros2 pkg create --build-type ament_python <pkg_name> --dependencies rclpy std_msgs\n\n# Build the workspace\ncd ~/ros2_ws\ncolcon build\n\n# Source the workspace\nsource install/setup.bash\n```"
+    },
+    {
+      "heading": "Custom ROS 2 Node Creation (Python)",
+      "text": "Navigate into your package and create a Python node file:\n\n```bash\ncd <pkg_name>\ntouch <pkg_name>.py\nchmod +x <pkg_name>.py\n```"
+    },
+    {
+      "heading": "Import ROS 2 Libraries",
+      "text": "Start your node by importing required libraries:\n\n```python\n#!/usr/bin/env python3\n\nimport rclpy\nfrom rclpy.node import Node\n```"
+    },
+    {
+      "heading": "Create a Custom Node Class",
+      "text": "Define your node class by inheriting from Node:\n\n```python\nclass SimpleNode(Node):\n    def __init__(self):\n        super().__init__('simple_node')\n        self.get_logger().info('SimpleNode has been started')\n```"
+    },
+    {
+      "heading": "Initialize and Spin the Node",
+      "text": "Initialize ROS 2, create the node, and keep it running:\n\n```python\ndef main(args=None):\n    rclpy.init(args=args)\n    node = SimpleNode()\n    rclpy.spin(node)\n```"
+    },
+    {
+      "heading": "Shutdown Cleanly",
+      "text": "Properly destroy the node and shut down ROS 2:\n\n```python\n    node.destroy_node()\n    rclpy.shutdown()\n```"
+    },
+    {
+      "heading": "Full Example Code",
+      "text": "Complete minimal Python node example:\n\n```python\n#!/usr/bin/env python3\nimport rclpy\nfrom rclpy.node import Node\n\nclass hello_world(Node):\n    def __init__(self):\n        super().__init__('hello_world')\n        self.get_logger().info('Hello, World!')\n\ndef main(args=None):\n    rclpy.init(args=args)\n    node = hello_world()\n    rclpy.spin(node)\n    node.destroy_node()\n    rclpy.shutdown()\n\nif __name__ == \"__main__\":\n    main()\n```"
+    },
+    {
+      "heading": "Configure setup.py Entry Points",
+      "text": "Edit setup.py to register your node as a console script:\n\n```python\nentry_points={\n    'console_scripts': [\n        '<node_name> = <package_name>.<script_name>:main'\n    ],\n},\n```\n\nExample:\n\n```python\n'console_scripts': [\n    'hello_world = hello_world.hello_world:main',\n    'bye_world = hello_world.bye_world:main',\n    'bye_worldrecive = hello_world.bye_worldrecive:main',\n],\n```"
+    },
+    {
+      "heading": "Automatically Source ROS 2 on Terminal Startup",
+      "text": "To avoid sourcing ROS 2 manually every time:\n\n```bash\nnano ~/.bashrc\n```\n\nAdd at the bottom:\n\n```bash\nsource /opt/ros/humble/setup.bash\nsource ~/ros2_ws/install/setup.bash\n```\n\nSave and reload:\n\n```bash\nsource ~/.bashrc\n```"
+    }
+  ],
+  "tags": ["ROS 2", "Humble", "Python", "rclpy", "Robotics", "Linux", "Ubuntu"]
+},
+
 ];
 
 
