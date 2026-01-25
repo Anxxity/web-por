@@ -458,6 +458,63 @@ const tutorials = [
           ],
           "tags": ["ROS 2", "Humble", "Python", "rclpy", "Robotics", "Linux", "Ubuntu"]
         },
+        {
+  "id": 4,
+  "title": "ROS 2 Custom Message Using Two Packages",
+  "description": "Step-by-step guide to creating and using a custom ROS 2 message by defining it in a dedicated interface package and consuming it in a separate Python node package with publisher and subscriber examples.",
+  "image": "https://raw.githubusercontent.com/ros-infrastructure/artwork/master/distributions/humble/HumbleHawksbill.png",
+  "category": "ros",
+  "difficulty": "Intermediate",
+  "duration": "60-90 minutes",
+  "content": [
+    {
+      "heading": "Overview",
+      "text": "This guide demonstrates how to create a custom ROS 2 message in one package and use it in another package containing publisher and subscriber nodes. This modular approach follows ROS 2 best practices and improves reusability."
+    },
+    {
+      "heading": "Package Overview",
+      "text": "**Message Package**\n- Name: custom_interfaces\n- Build Type: ament_cmake\n- Purpose: Define custom .msg files\n\n**Node Package**\n- Name: student_nodes\n- Build Type: ament_python\n- Purpose: Implement publisher and subscriber nodes using the custom message"
+    },
+    {
+      "heading": "Workspace Structure",
+      "text": "Expected workspace layout:\n\n```text\nros2_ws/\n└── src/\n    ├── custom_interfaces/\n    │   └── msg/\n    │       └── Student.msg\n    └── student_nodes/\n        └── student_nodes/\n            ├── publisher.py\n            └── subscriber.py\n```"
+    },
+    {
+      "heading": "Create Message Package",
+      "text": "Create a message-only package:\n\n```bash\ncd ~/ros2_ws/src\nros2 pkg create custom_interfaces --build-type ament_cmake\n```\n\nCreate the message definition:\n\n```bash\ncd custom_interfaces\nmkdir msg\nnano msg/Student.msg\n```\n\n```msg\nint32 id\nstring name\nfloat32 marks\n```"
+    },
+    {
+      "heading": "Configure Message Package",
+      "text": "Update **CMakeLists.txt**:\n\n```cmake\nfind_package(rosidl_default_generators REQUIRED)\n\nrosidl_generate_interfaces(${PROJECT_NAME}\n  \"msg/Student.msg\"\n)\n\nament_export_dependencies(rosidl_default_runtime)\n```\n\nUpdate **package.xml**:\n\n```xml\n<build_depend>rosidl_default_generators</build_depend>\n<exec_depend>rosidl_default_runtime</exec_depend>\n```"
+    },
+    {
+      "heading": "Build Message Package",
+      "text": "Build and source the workspace so the message is generated:\n\n```bash\ncd ~/ros2_ws\ncolcon build\nsource install/setup.bash\n```"
+    },
+    {
+      "heading": "Create Node Package",
+      "text": "Create a Python node package that depends on the custom interface:\n\n```bash\ncd ~/ros2_ws/src\nros2 pkg create student_nodes --build-type ament_python --dependencies rclpy custom_interfaces\n```"
+    },
+    {
+      "heading": "Publisher Node",
+      "text": "Create a publisher that sends Student messages:\n\n```python\nimport rclpy\nfrom rclpy.node import Node\nfrom custom_interfaces.msg import Student\n\nclass StudentPublisher(Node):\n    def __init__(self):\n        super().__init__('student_publisher')\n        self.publisher_ = self.create_publisher(Student, 'student_info', 10)\n        self.timer = self.create_timer(1.0, self.publish_data)\n\n    def publish_data(self):\n        msg = Student()\n        msg.id = 1\n        msg.name = \"Anu\"\n        msg.marks = 89.5\n        self.publisher_.publish(msg)\n        self.get_logger().info(f\"Published: {msg.name}\")\n\ndef main():\n    rclpy.init()\n    node = StudentPublisher()\n    rclpy.spin(node)\n    rclpy.shutdown()\n\nif __name__ == '__main__':\n    main()\n```"
+    },
+    {
+      "heading": "Subscriber Node",
+      "text": "Create a subscriber to receive Student messages:\n\n```python\nimport rclpy\nfrom rclpy.node import Node\nfrom custom_interfaces.msg import Student\n\nclass StudentSubscriber(Node):\n    def __init__(self):\n        super().__init__('student_subscriber')\n        self.subscription = self.create_subscription(\n            Student,\n            'student_info',\n            self.callback,\n            10\n        )\n\n    def callback(self, msg):\n        self.get_logger().info(\n            f\"ID: {msg.id}, Name: {msg.name}, Marks: {msg.marks}\"\n        )\n\ndef main():\n    rclpy.init()\n    node = StudentSubscriber()\n    rclpy.spin(node)\n    rclpy.shutdown()\n\nif __name__ == '__main__':\n    main()\n```"
+    },
+    {
+      "heading": "Configure setup.py Entry Points",
+      "text": "Register the nodes as console scripts in **setup.py**:\n\n```python\nentry_points={\n    'console_scripts': [\n        'student_pub = student_nodes.publisher:main',\n        'student_sub = student_nodes.subscriber:main',\n    ],\n},\n```"
+    },
+    {
+      "heading": "Build and Run",
+      "text": "Build the workspace and run the nodes:\n\n```bash\ncd ~/ros2_ws\ncolcon build\nsource install/setup.bash\n```\n\nRun publisher:\n```bash\nros2 run student_nodes student_pub\n```\n\nRun subscriber:\n```bash\nros2 run student_nodes student_sub\n```"
+    }
+  ],
+  "tags": ["ROS 2", "Custom Message", "Interfaces", "Python", "rclpy", "Humble", "Robotics"]
+},
+
 ];
 
 
