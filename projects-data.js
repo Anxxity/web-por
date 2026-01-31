@@ -514,6 +514,75 @@ const tutorials = [
   ],
   "tags": ["ROS 2", "Custom Message", "Interfaces", "Python", "rclpy", "Humble", "Robotics"]
 },
+{
+  "id": 5,
+  "title": "FiveM Custom Script Development with Natives & NUI",
+  "description": "A complete step-by-step guide to creating a custom FiveM script from scratch, covering resource structure, FiveM natives, client-server communication, and full NUI (HTML/CSS/JS) integration with callbacks.",
+  "image": "https://docs.fivem.net/images/logo.png",
+  "category": "fivem",
+  "difficulty": "Beginner to Intermediate",
+  "duration": "90–120 minutes",
+  "content": [
+    {
+      "heading": "Overview",
+      "text": "This tutorial teaches how to build a fully functional custom FiveM resource. You will learn how FiveM scripts work, how to use GTA V natives, how to communicate between client and server, and how to build interactive NUI interfaces using HTML, CSS, and JavaScript."
+    },
+    {
+      "heading": "What Is a FiveM Script?",
+      "text": "A FiveM script (resource) is a modular package that runs on a FiveM server. It can control gameplay logic using Lua, interact with GTA V through natives, communicate with the server, and display UI using NUI."
+    },
+    {
+      "heading": "Basic Resource Structure",
+      "text": "Typical resource layout:\n\n```text\nmy_script/\n├── fxmanifest.lua\n├── client.lua\n├── server.lua\n└── html/\n    ├── index.html\n    ├── style.css\n    └── script.js\n```"
+    },
+    {
+      "heading": "fxmanifest.lua",
+      "text": "The fxmanifest.lua file tells FiveM how to load your resource:\n\n```lua\nfx_version 'cerulean'\ngame 'gta5'\n\nauthor 'Your Name'\ndescription 'My Custom FiveM Script'\nversion '1.0.0'\n\nclient_scripts { 'client.lua' }\nserver_scripts { 'server.lua' }\n\nui_page 'html/index.html'\n\nfiles {\n  'html/index.html',\n  'html/style.css',\n  'html/script.js'\n}\n```"
+    },
+    {
+      "heading": "Using FiveM Natives",
+      "text": "FiveM natives are GTA V functions exposed to scripts. Example:\n\n```lua\nRegisterCommand('tpme', function()\n  local ped = PlayerPedId()\n  SetEntityCoords(ped, 200.0, -900.0, 30.0)\nend)\n```\n\nNatives allow you to move players, spawn vehicles, give weapons, and control the game world."
+    },
+    {
+      "heading": "Client ↔ Server Communication",
+      "text": "Client to Server:\n\n```lua\n-- client.lua\nTriggerServerEvent('myScript:saveData', 100)\n```\n\n```lua\n-- server.lua\nRegisterNetEvent('myScript:saveData', function(value)\n  print('Received:', value)\nend)\n```"
+    },
+    {
+      "heading": "Server ↔ Client Communication",
+      "text": "Server to Client:\n\n```lua\n-- server.lua\nTriggerClientEvent('myScript:notify', source, 'Hello Player')\n```\n\n```lua\n-- client.lua\nRegisterNetEvent('myScript:notify', function(msg)\n  print(msg)\nend)\n```"
+    },
+    {
+      "heading": "Introduction to NUI",
+      "text": "NUI (Native UI) allows you to create in-game interfaces using HTML, CSS, and JavaScript. It is commonly used for HUDs, menus, inventories, phones, and leaderboards."
+    },
+    {
+      "heading": "Creating the NUI Interface",
+      "text": "index.html:\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div id=\"box\">Hello FiveM</div>\n  <button onclick=\"sendData()\">Send</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>\n```"
+    },
+    {
+      "heading": "Sending Data from Lua to NUI",
+      "text": "```lua\n-- client.lua\nRegisterCommand('openui', function()\n  SetNuiFocus(true, true)\n  SendNUIMessage({ action = 'show', text = 'Hello from Lua' })\nend)\n```"
+    },
+    {
+      "heading": "Receiving Data in JavaScript",
+      "text": "```js\nwindow.addEventListener('message', function(event) {\n  if (event.data.action === 'show') {\n    document.getElementById('box').innerText = event.data.text;\n  }\n});\n```"
+    },
+    {
+      "heading": "Sending Data from NUI to Lua (Callback)",
+      "text": "```js\nfunction sendData() {\n  fetch(`https://${GetParentResourceName()}/submit`, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ value: 42 })\n  });\n}\n```\n\n```lua\nRegisterNUICallback('submit', function(data, cb)\n  print('From UI:', data.value)\n  SetNuiFocus(false, false)\n  cb('ok')\nend)\n```"
+    },
+    {
+      "heading": "Closing the UI",
+      "text": "```js\ndocument.addEventListener('keydown', function(e) {\n  if (e.key === 'Escape') {\n    fetch(`https://${GetParentResourceName()}/close`, { method: 'POST' });\n  }\n});\n```\n\n```lua\nRegisterNUICallback('close', function(_, cb)\n  SetNuiFocus(false, false)\n  cb('ok')\nend)\n```"
+    },
+    {
+      "heading": "Build, Test, and Debug",
+      "text": "Place the resource in the server resources folder, then run:\n\n```text\nrefresh\nensure my_script\n```\n\nUse F8 console, print() in Lua, and console.log() in JavaScript for debugging."
+    }
+  ],
+  "tags": ["FiveM", "Lua", "NUI", "HTML", "CSS", "JavaScript", "GTA V", "Game Scripting"]
+}
+
 
 ];
 
