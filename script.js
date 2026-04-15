@@ -15,6 +15,7 @@ function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
+    if (!themeToggle || !themeIcon) return;
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
@@ -23,12 +24,15 @@ function initThemeToggle() {
         updateNavbarBackground();
     }, 100);
 
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
+    if (themeToggle.dataset.themeBound !== 'true') {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        themeToggle.dataset.themeBound = 'true';
+    }
 
     function setTheme(theme) {
         body.setAttribute('data-theme', theme);
@@ -161,6 +165,7 @@ function initSmoothScrolling() {
 
 function initProjectFilters() {
     const section = document.querySelector('#projects');
+    if (!section) return;
     const filterButtons = section.querySelectorAll('.filter-btn');
 
     filterButtons.forEach(button => {
@@ -177,6 +182,7 @@ function initProjectFilters() {
 
 function initFiveMFilters() {
     const section = document.querySelector('#fivem');
+    if (!section) return;
     const filterButtons = section.querySelectorAll('.filter-btn');
 
     filterButtons.forEach(button => {

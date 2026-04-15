@@ -542,32 +542,32 @@ section {
 }
 
 .fivem-projects {
-    background: var(--bg-dark);
-    color: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .fivem-projects .section-title,
 .fivem-projects .section-subtitle {
-    color: white;
+    color: var(--text-primary);
 }
 
 .fivem-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     backdrop-filter: blur(10px);
 }
 
 .fivem-card .project-content h3 {
-    color: white;
+    color: var(--text-primary);
 }
 
 .fivem-card .project-content p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
 }
 
 .fivem-card .tech-tag {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: var(--tag-bg);
+    color: var(--tag-text);
 }
 
 * {
@@ -576,6 +576,34 @@ section {
 
 [data-theme="dark"] .hero {
     background: linear-gradient(135deg, #1e3a8a 0%, #581c87 100%);
+}
+
+[data-theme="dark"] .fivem-projects {
+    background: var(--bg-dark);
+    color: white;
+}
+
+[data-theme="dark"] .fivem-projects .section-title,
+[data-theme="dark"] .fivem-projects .section-subtitle {
+    color: white;
+}
+
+[data-theme="dark"] .fivem-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .fivem-card .project-content h3 {
+    color: white;
+}
+
+[data-theme="dark"] .fivem-card .project-content p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .fivem-card .tech-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 [data-theme="dark"] .hero-graphic {
