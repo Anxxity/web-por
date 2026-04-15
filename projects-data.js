@@ -70,7 +70,7 @@ const fivemProjects = [
         id: 5,
         title: "rm_radiolist",
         description: "based on the original script X-RADIOLIST. I updated the visual style and added a movable radio list.",
-        image: "https://github.com/user-attachments/assets/09803e71-e50a-417a-932a-674689bc9447",
+        image: "https://media.discordapp.net/attachments/1493980550334124113/1493980586254008371/ChatGPT_Image_Apr_15_2026_02_22_51_PM.png?ex=69e0f158&is=69df9fd8&hm=c55792c36c50129d649bfb015172d4442da439eee7b2c87f755ee8833c1e97df&=&format=webp&quality=lossless&width=1106&height=737",
         technologies: ["Lua", "HTML/CSS", "JavaScript"],
         features: [
             "Config to show players’ RP name",
@@ -79,7 +79,25 @@ const fivemProjects = [
             "Interactive and immersive UI"
         ],
         github: "https://github.com/Anxxity/rm_radiolist",
-        demo: "https://github.com/user-attachments/assets/d7ead535-2691-498a-a966-658871a72f10",
+        demo: "https://youtu.be/DnbDkBv0urY",
+        category: "util"
+    },
+    {
+        id: 6,
+        title: "rm_multicharacter",
+        description: "A fully redesigned multicharacter UI for FiveM with smooth animations, modern visuals, and an immersive character selection experience. Built as a visual upgrade over the default Qbox multicharacter system.",
+        image: "https://media.discordapp.net/attachments/1493980550334124113/1493984213186248724/ChatGPT_Image_Apr_15_2026_02_39_26_PM.png?ex=69e0f4b9&is=69dfa339&hm=1de95049c6711d1dadd5bf222239d0b192b0a2b790a29c6c19bb561cfdf12ce7&=&format=webp&quality=lossless&width=550&height=310",
+        technologies: ["Lua", "HTML/CSS", "JavaScript"],
+        features: [
+          "Modern and animated character selection UI",
+          "Smooth camera transitions between characters",
+          "Custom character preview with detailed info",
+          "Interactive UI with hover effects and transitions",
+          "Easy configuration for UI elements and layout",
+          "Optimized performance and clean design"
+        ],
+        github: "", 
+        demo: "https://youtu.be/bix6gjPs7jM",
         category: "util"
     }
 ];
