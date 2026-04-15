@@ -13,8 +13,8 @@ const fivemProjects = [
             "Enter/exit events for scripts (e.g., disable PvP, heal, etc.)",
             "Persist zones to JSON/SQL"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "util"
     },
     {
@@ -29,8 +29,8 @@ const fivemProjects = [
             "Top players displayed as peds",
             "Interactive UI integration"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "PvP"
     },
     {
@@ -46,7 +46,7 @@ const fivemProjects = [
             "Easy intergation to other resources",
             "Simple Ui"
         ],
-        github: "#",
+        github: "",
         demo: "https://www.youtube.com/watch?v=zPHSEM_edBI",
         category: "PvP"
     },
@@ -62,8 +62,8 @@ const fivemProjects = [
             "Weapon loadout selection",
             "Interactive and immersive UI"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "PvP"
     },
     {
