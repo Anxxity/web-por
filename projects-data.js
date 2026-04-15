@@ -37,7 +37,7 @@ const fivemProjects = [
         id: 3,
         title: "PvP Leaderboard",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
+        image: "https://media.discordapp.net/attachments/1493980550334124113/1493990037723942952/ChatGPT_Image_Apr_15_2026_03_02_36_PM.png?ex=69e0fa25&is=69dfa8a5&hm=22f7b92a0719ddcae372e11166194433f6ded60af4812aa1fac44c677d488e25&=&format=webp&quality=lossless&width=550&height=310",
           technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
         features: [
            "Real-time K/D tracking",
