@@ -105,8 +105,23 @@ const fivemProjects = [
 
 
 const otherProjects = [
-     {
+      {
         id: 1,
+        title: "cheap deck",
+        description: "A cheap alternative for stream deck . Cheap deck",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202603_38_37PM.png",
+        technologies: [ "Arduino Uno", "tft touch screen"],
+        features: [
+           "Touchscreen Interface",
+           "Keyboard Shortcuts",
+           "Fully Customizable"
+        ],
+        github: "https://github.com/Anxxity/cheap-deck",
+        demo: "https://youtube.com/shorts/voRVJhqc4ek",
+        category: "Raspberry"
+     },
+     {
+        id: 2,
         title: "Eye Tracking Wheelchair",
         description: "Automated wheelchair controlled via eye-tracking using Raspberry Pi and Arduino.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Eye+Tracking+Wheelchair",
@@ -121,37 +136,7 @@ const otherProjects = [
         category: "Robotics"
     },
     {
-        id: 2,
-        title: "Fire Extinguisher Bot",
-        description: "Arduino-based robot that detects and extinguishes fire using sensors and 3D printed components.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Fire+Extinguisher+Bot",
-        technologies: ["Arduino Uno", "ESP", "Temperature & Smoke Sensors", "3D Printing"],
-        features: [
-            "Real-time fire detection",
-            "Automatic extinguishing",
-            "Remote monitoring"
-        ],
-        github: "#",
-        demo: "#",
-        category: "Arduino"
-    },
-    {
         id: 3,
-        title: "TRobot",
-        description: "Weather-sensing robot using ESP32 for temperature, humidity, and thunderstorm detection.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-innovations2.png",
-        technologies: ["ESP32", "Sensors", "Arduino", "IoT"],
-        features: [
-            "Detects temperature, humidity, storms",
-            "Sends real-time alerts",
-            "Weather logging"
-        ],
-        github: "#",
-        demo: "#",
-        category: "Arduino"
-    },
-    {
-        id: 4,
         title: "Aimee - Recipe Assistant Robot",
         description: "AI-powered recipe assistant running on Raspberry Pi with voice and display support.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-startup-204x300.png",
@@ -166,7 +151,38 @@ const otherProjects = [
         category: "Robotics"
     },
     {
+        id: 4,
+        title: "Fire Extinguisher Bot",
+        description: "Arduino-based robot that detects and extinguishes fire using sensors and 3D printed components.",
+        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Fire+Extinguisher+Bot",
+        technologies: ["Arduino Uno", "ESP", "Temperature & Smoke Sensors", "3D Printing"],
+        features: [
+            "Real-time fire detection",
+            "Automatic extinguishing",
+            "Remote monitoring"
+        ],
+        github: "#",
+        demo: "#",
+        category: "Arduino"
+    },
+    {
         id: 5,
+        title: "TRobot",
+        description: "Weather-sensing robot using ESP32 for temperature, humidity, and thunderstorm detection.",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-innovations2.png",
+        technologies: ["ESP32", "Sensors", "Arduino", "IoT"],
+        features: [
+            "Detects temperature, humidity, storms",
+            "Sends real-time alerts",
+            "Weather logging"
+        ],
+        github: "#",
+        demo: "#",
+        category: "Arduino"
+    },
+    
+    {
+        id: 6,
         title: "Home Automation System",
         description: "Arduino-based home automation using relays for controlling appliances.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Home+Automation",
@@ -181,7 +197,7 @@ const otherProjects = [
         category: "Arduino"
     },
     {
-        id: 6,
+        id: 7,
         title: "Beach Cleaning Robot",
         description: "Autonomous beach cleaning robot with Pixhawk flight controller and Raspberry Pi mission planning.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Beach+Cleaning+Robot",
@@ -196,7 +212,7 @@ const otherProjects = [
         category: "Raspberry"
     },
     {
-        id: 7,
+        id: 8,
         title: "Track Rover",
         description: "Tracked rover controlled via Raspberry Pi and Arduino for mission-based tasks.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Track+Rover",
@@ -209,22 +225,7 @@ const otherProjects = [
         github: "#",
         demo: "#",
         category: "Raspberry"
-    },
-       {
-        id: 8,
-        title: "cheap deck",
-        description: "A cheap alternative for stream deck . Cheap deck",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Track+Rover",
-        technologies: [ "Arduino Uno", "tft touch screen"],
-        features: [
-           "Touchscreen Interface",
-           "Keyboard Shortcuts",
-           "Fully Customizable"
-        ],
-        github: "https://github.com/Anxxity/cheap-deck",
-        demo: "https://github.com/Anxxity/cheap-deck",
-        category: "Raspberry"
-    }
+    }     
 ];
 
 const skills = [
