@@ -139,7 +139,7 @@ const otherProjects = [
         id: 3,
         title: "TRobot",
         description: "Weather-sensing robot using ESP32 for temperature, humidity, and thunderstorm detection.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=TRobot",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-innovations2.png",
         technologies: ["ESP32", "Sensors", "Arduino", "IoT"],
         features: [
             "Detects temperature, humidity, storms",
@@ -154,7 +154,7 @@ const otherProjects = [
         id: 4,
         title: "Aimee - Recipe Assistant Robot",
         description: "AI-powered recipe assistant running on Raspberry Pi with voice and display support.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Aimee",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-startup-204x300.png",
         technologies: ["Python", "Raspberry Pi", "Google Generative AI"],
         features: [
             "Voice interaction",
