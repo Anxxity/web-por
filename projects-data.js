@@ -52,9 +52,9 @@ const fivemProjects = [
     },
     {
         id: 4,
-        title: "PvP Lobby UI",
+        title: "RM PvP Leaderboard System (standalone / oxmysql)",
         description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/leaderboardlast.png?raw=true",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202612_54_47PM.png",
         technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
         features: [
             "Lobby creation & joining",
