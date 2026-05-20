@@ -4,7 +4,7 @@ const fivemProjects = [
         id: 1,
         title: "Safezone Creator",
         description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
-        image: "asses/safezonecreator.png",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
         technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
         features: [
             "In-game safezone creation & editing (PolyZone)",
@@ -21,7 +21,7 @@ const fivemProjects = [
         id: 2,
         title: "PvP Profile System",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "asses/pvpprfile.png",
+        image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
         technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
         features: [
             "Real-time K/D tracking",
@@ -37,7 +37,7 @@ const fivemProjects = [
         id: 3,
         title: "PvP Leaderboard",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "asses/leaderboardlast.png",
+        image: "https://media.discordapp.net/attachments/1493980550334124113/1493990037723942952/ChatGPT_Image_Apr_15_2026_03_02_36_PM.png?ex=69e0fa25&is=69dfa8a5&hm=22f7b92a0719ddcae372e11166194433f6ded60af4812aa1fac44c677d488e25&=&format=webp&quality=lossless&width=550&height=310",
           technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
         features: [
            "Real-time K/D tracking",
@@ -70,7 +70,7 @@ const fivemProjects = [
         id: 5,
         title: "rm_radiolist",
         description: "based on the original script X-RADIOLIST. I updated the visual style and added a movable radio list.",
-        image: "https://media.discordapp.net/attachments/1493980550334124113/1493980586254008371/ChatGPT_Image_Apr_15_2026_02_22_51_PM.png?ex=69e0f158&is=69df9fd8&hm=c55792c36c50129d649bfb015172d4442da439eee7b2c87f755ee8833c1e97df&=&format=webp&quality=lossless&width=1106&height=737",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_22_51PM.png",
         technologies: ["Lua", "HTML/CSS", "JavaScript"],
         features: [
             "Config to show players’ RP name",
@@ -86,7 +86,7 @@ const fivemProjects = [
         id: 6,
         title: "rm_multicharacter",
         description: "A fully redesigned multicharacter UI for FiveM with smooth animations, modern visuals, and an immersive character selection experience. Built as a visual upgrade over the default Qbox multicharacter system.",
-        image: "https://media.discordapp.net/attachments/1493980550334124113/1493984213186248724/ChatGPT_Image_Apr_15_2026_02_39_26_PM.png?ex=69e0f4b9&is=69dfa339&hm=1de95049c6711d1dadd5bf222239d0b192b0a2b790a29c6c19bb561cfdf12ce7&=&format=webp&quality=lossless&width=550&height=310",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png",
         technologies: ["Lua", "HTML/CSS", "JavaScript"],
         features: [
           "Modern and animated character selection UI",
@@ -124,7 +124,7 @@ const otherProjects = [
         id: 2,
         title: "Eye Tracking Wheelchair",
         description: "Automated wheelchair controlled via eye-tracking using Raspberry Pi and Arduino.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Eye+Tracking+Wheelchair",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/wc.png",
         technologies: ["Python", "Raspberry Pi", "Arduino", "GazeTracking Library", "MY1016Z2 Motor", "BTS7960 Driver"],
         features: [
             "Real-time eye tracking",
@@ -252,7 +252,7 @@ const contactInfo = {
     github: "github.com/anxxity",
     socialLinks: {
         github: "https://github.com/anxxity",
-        discord: "https://discord.gg/",
+        discord: "https://discord.gg/t4dZJ8bQFM",
         twitter: "https://twitter.com/",
         linkedin: "https://www.linkedin.com/in/remin-mohammed-062426197/"
     }
