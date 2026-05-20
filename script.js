@@ -277,7 +277,7 @@ function showTutorialModal(tutorial) {
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
-    const discordWebhookUrl = 'https://discord.com/api/webhooks/1506638441780215951/ybtjs9dQRzhtrNxpI3EF4Fx_OSsJSNruQkM-jqdqo-UqhYwqAoEe3vQ5q5JThK82vm3G';
+    const contactEndpoint = 'https://webhook.reminmohammed123.workers.dev/';
     
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -322,7 +322,7 @@ function initContactForm() {
         };
 
         try {
-            const response = await fetch(discordWebhookUrl, {
+            const response = await fetch(contactEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -331,7 +331,7 @@ function initContactForm() {
             });
 
             if (!response.ok) {
-                throw new Error(`Discord webhook returned ${response.status}`);
+                throw new Error(`Contact endpoint returned ${response.status}`);
             }
 
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
