@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initScrollAnimations();
     initTypingEffect();
-    initTutorialModal();
 });
 
 function initThemeToggle() {
@@ -60,24 +59,14 @@ function initThemeToggle() {
 
 function updateNavbarBackground() {
     const navbar = document.getElementById('navbar');
-    const currentTheme = document.body.getAttribute('data-theme');
+    if (!navbar) return;
 
     if (window.scrollY > 50) {
-        if (currentTheme === 'dark') {
-            navbar.style.background = 'rgba(17, 24, 39, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        }
+        navbar.style.background = 'var(--nav-bg)';
+        navbar.style.boxShadow = '0 10px 0 rgba(17, 17, 17, 0.08)';
     } else {
-        if (currentTheme === 'dark') {
-            navbar.style.background = 'rgba(17, 24, 39, 0.95)';
-            navbar.style.boxShadow = 'none';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
+        navbar.style.background = 'var(--nav-bg)';
+        navbar.style.boxShadow = 'none';
     }
 }
 
@@ -219,6 +208,7 @@ function initTutorialModal() {
     document.addEventListener('click', function(e) {
         const viewBtn = e.target.closest('.view-tutorial-btn');
         if (!viewBtn) return;
+        if (viewBtn.tagName === 'A' && viewBtn.getAttribute('href')) return;
 
         const tutorialId = parseInt(viewBtn.getAttribute('data-tutorial-id'));
         const tutorial = tutorials.find(t => t.id === tutorialId);
@@ -286,6 +276,7 @@ function showTutorialModal(tutorial) {
 
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();

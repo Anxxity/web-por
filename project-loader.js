@@ -74,6 +74,7 @@ function createFiveMProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card fivem-card';
     card.setAttribute('data-category', project.category);
+    card.setAttribute('data-project-id', project.id);
 
     const techTags = project.technologies.map(tech => 
         `<span class="tech-tag">${tech}</span>`
@@ -115,6 +116,7 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
     card.setAttribute('data-category', project.category);
+    card.setAttribute('data-project-id', project.id);
 
     const techTags = project.technologies.map(tech => 
         `<span class="tech-tag">${tech}</span>`
@@ -463,13 +465,6 @@ function createProjectModal(project) {
         }
     `;
 
-    if (!document.querySelector('#modal-styles')) {
-        const styleSheet = document.createElement('style');
-        styleSheet.id = 'modal-styles';
-        styleSheet.textContent = modalStyles;
-        document.head.appendChild(styleSheet);
-    }
-
     return modal;
 }
 
@@ -561,9 +556,9 @@ function createTutorialCard(tutorial) {
             <div class="tutorial-tech">
                 ${tags}
             </div>
-            <button class="btn btn-primary view-tutorial-btn" data-tutorial-id="${tutorial.id}">
+            <a href="tutorial-detail.html?id=${tutorial.id}" class="btn btn-primary view-tutorial-btn" data-tutorial-id="${tutorial.id}">
                 View Tutorial <i class="fas fa-arrow-right"></i>
-            </button>
+            </a>
         </div>
     `;
 
@@ -615,68 +610,6 @@ function addPaginationControls(sectionSelector, totalProjects, pageType) {
             Next <i class="fas fa-chevron-right"></i>
         </button>
     `;
-
-    if (!document.querySelector('#pagination-styles')) {
-        const styleSheet = document.createElement('style');
-        styleSheet.id = 'pagination-styles';
-        styleSheet.textContent = `
-            .pagination {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                margin-top: 3rem;
-                padding: 1.5rem 0;
-            }
-
-            .pagination-btn {
-                padding: 0.75rem 1.5rem;
-                background: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-weight: 500;
-                transition: var(--transition);
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .pagination-btn:hover:not(:disabled) {
-                background: var(--secondary-color);
-                transform: translateY(-2px);
-                box-shadow: var(--shadow);
-            }
-
-            .pagination-btn:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
-
-            .pagination-info {
-                font-size: 1rem;
-                font-weight: 500;
-                color: var(--text-primary);
-            }
-
-            @media (max-width: 768px) {
-                .pagination {
-                    gap: 1rem;
-                }
-
-                .pagination-btn {
-                    padding: 0.5rem 1rem;
-                    font-size: 0.9rem;
-                }
-
-                .pagination-info {
-                    font-size: 0.9rem;
-                }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-    }
 
     const grid = section.querySelector('.projects-grid');
     grid.after(pagination);
