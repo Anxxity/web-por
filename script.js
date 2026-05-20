@@ -277,15 +277,16 @@ function showTutorialModal(tutorial) {
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
+    const discordWebhookUrl = 'https://discord.com/api/webhooks/1506638441780215951/ybtjs9dQRzhtrNxpI3EF4Fx_OSsJSNruQkM-jqdqo-UqhYwqAoEe3vQ5q5JThK82vm3G';
     
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        const name = formData.get('name')?.trim();
+        const email = formData.get('email')?.trim();
+        const subject = formData.get('subject')?.trim();
+        const message = formData.get('message')?.trim();
         
         if (!name || !email || !subject || !message) {
             showNotification('Please fill in all fields', 'error');
@@ -298,17 +299,50 @@ function initContactForm() {
         }
         
         const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
+        const originalText = submitButton.innerHTML;
         
-        submitButton.textContent = 'Sending...';
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitButton.disabled = true;
-        
-        setTimeout(() => {
+
+        const payload = {
+            username: 'Portfolio Contact',
+            embeds: [
+                {
+                    title: 'New Portfolio Contact',
+                    color: 0xf97316,
+                    fields: [
+                        { name: 'Name', value: name, inline: true },
+                        { name: 'Email', value: email, inline: true },
+                        { name: 'Project Type', value: subject, inline: false },
+                        { name: 'Message', value: message, inline: false }
+                    ],
+                    timestamp: new Date().toISOString()
+                }
+            ]
+        };
+
+        try {
+            const response = await fetch(discordWebhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Discord webhook returned ${response.status}`);
+            }
+
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             contactForm.reset();
-            submitButton.textContent = originalText;
+        } catch (error) {
+            console.error('Contact form webhook error:', error);
+            showNotification('Message could not be sent. Please try again later.', 'error');
+        } finally {
+            submitButton.innerHTML = originalText;
             submitButton.disabled = false;
-        }, 2000);
+        }
     });
 }
 

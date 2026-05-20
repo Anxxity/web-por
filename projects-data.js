@@ -4,7 +4,7 @@ const fivemProjects = [
         id: 1,
         title: "Safezone Creator",
         description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
+        image: "asses/safezonecreator.png",
         technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
         features: [
             "In-game safezone creation & editing (PolyZone)",
@@ -21,7 +21,7 @@ const fivemProjects = [
         id: 2,
         title: "PvP Profile System",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
+        image: "asses/pvpprfile.png",
         technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
         features: [
             "Real-time K/D tracking",
@@ -37,7 +37,7 @@ const fivemProjects = [
         id: 3,
         title: "PvP Leaderboard",
         description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://media.discordapp.net/attachments/1493980550334124113/1493990037723942952/ChatGPT_Image_Apr_15_2026_03_02_36_PM.png?ex=69e0fa25&is=69dfa8a5&hm=22f7b92a0719ddcae372e11166194433f6ded60af4812aa1fac44c677d488e25&=&format=webp&quality=lossless&width=550&height=310",
+        image: "asses/leaderboardlast.png",
           technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
         features: [
            "Real-time K/D tracking",
