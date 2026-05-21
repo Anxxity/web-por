@@ -137,13 +137,13 @@ const otherProjects = [
     },
     {
         id: 3,
-        title: "Aimee - Recipe Assistant Robot",
-        description: "AI-powered recipe assistant running on Raspberry Pi with voice and display support.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-startup-204x300.png",
+        title: "Aimee - reception Assistant Robot",
+        description: "AI-powered reception assistant running on Raspberry Pi with voice and display support.",
+        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/aimee.png",
         technologies: ["Python", "Raspberry Pi", "Google Generative AI"],
         features: [
             "Voice interaction",
-            "Recipe suggestions",
+            "reception",
             "Step-by-step guidance"
         ],
         github: "#",
