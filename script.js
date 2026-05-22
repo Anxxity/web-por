@@ -304,31 +304,20 @@ function initContactForm() {
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitButton.disabled = true;
 
-        const payload = {
-            username: 'Portfolio Contact',
-            embeds: [
-                {
-                    title: 'New Portfolio Contact',
-                    color: 0xf97316,
-                    fields: [
-                        { name: 'Name', value: name, inline: true },
-                        { name: 'Email', value: email, inline: true },
-                        { name: 'Project Type', value: subject, inline: false },
-                        { name: 'Message', value: message, inline: false }
-                    ],
-                    timestamp: new Date().toISOString()
-                }
-            ]
-        };
+  
 
         try {
             const response = await fetch(contactEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message
+                    })
+                    });
 
             if (!response.ok) {
                 throw new Error(`Contact endpoint returned ${response.status}`);
