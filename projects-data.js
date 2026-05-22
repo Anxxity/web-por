@@ -1,110 +1,10 @@
 
 const fivemProjects = [
-    {
-        id: 7,
-        title: "Safezone Creator",
-        description: "Create and manage safezones in-game with a live config UI. Supports multiple zone shapes, job/weapon whitelists, admin bypass, custom player-facing text, and enter/exit events for easy integration.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
-        technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
-        features: [
-            "In-game safezone creation & editing (PolyZone)",
-            "Whitelisted weapons & job-based weapon rules",
-            "Custom on-screen text / notifications",
-            "Enter/exit events for scripts (e.g., disable PvP, heal, etc.)",
-            "Persist zones to JSON/SQL"
-        ],
-        github: "",
-        demo: "",
-        category: "util"
-    },
-    {
-        id: 6,
-        title: "PvP Profile System",
-        description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
-        technologies: ["Lua", "JavaScript", "ESX", "MySQL","HTML/CSS",],
-        features: [
-            "Real-time K/D tracking",
-            "Weapon statistics",
-            "Top players displayed as peds",
-            "Interactive UI integration"
-        ],
-        github: "",
-        demo: "",
-        category: "PvP"
-    },
-    {
-        id: 5,
-        title: "PvP Leaderboard",
-        description: "Track every player’s performance in real time with this sleek and responsive PvP Leaderboard.Designed with a dark, modern interface, it automatically updates kills, deaths, headshots, and K/D ratio during combat.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/leaderboard_v2.png",
-          technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
-        features: [
-           "Real-time K/D tracking",
-           "Top 10 players displayed in ui",
-           "Match history of player",
-            "Easy intergation to other resources",
-            "Simple Ui"
-        ],
-        github: "",
-        demo: "https://www.youtube.com/watch?v=zPHSEM_edBI",
-        category: "PvP"
-    },
-    {
-        id: 4,
-        title: "RM PvP Leaderboard System (standalone / oxmysql)",
-        description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202612_54_47PM.png",
-        technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
-        features: [
-            "Lobby creation & joining",
-            "Location selection",
-            "Weapon loadout selection",
-            "Interactive and immersive UI"
-        ],
-        github: "",
-        demo: "https://youtu.be/ksKkO0hUC3c",
-        category: "PvP"
-    },
-    {
-        id: 3,
-        title: "rm_radiolist",
-        description: "based on the original script X-RADIOLIST. I updated the visual style and added a movable radio list.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_22_51PM.png",
-        technologies: ["Lua", "HTML/CSS", "JavaScript"],
-        features: [
-            "Config to show players’ RP name",
-            "color of each player when they talk on radio",
-            "name radio channels in config",
-            "Interactive and immersive UI"
-        ],
-        github: "https://github.com/Anxxity/rm_radiolist",
-        demo: "https://youtu.be/DnbDkBv0urY",
-        category: "util"
-    },
-    {
-        id: 2,
-        title: "rm_multicharacter",
-        description: "A fully redesigned multicharacter UI for FiveM with smooth animations, modern visuals, and an immersive character selection experience. Built as a visual upgrade over the default Qbox multicharacter system.",
-        image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png",
-        technologies: ["Lua", "HTML/CSS", "JavaScript"],
-        features: [
-          "Modern and animated character selection UI",
-          "Smooth camera transitions between characters",
-          "Custom character preview with detailed info",
-          "Interactive UI with hover effects and transitions",
-          "Easy configuration for UI elements and layout",
-          "Optimized performance and clean design"
-        ],
-        github: "", 
-        demo: "https://youtu.be/oZZ0dTBhb2E",
-        category: "util"
-    },
-    {
+  {
       id: 1,
       title: "RM Pause Menu",
       description: "A clean and modern pause menu UI for FiveM built for ESX, QBCore, and QBOX frameworks. Designed with performance, simplicity, and immersion in mind to give your server a premium in-game experience.",
-      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png",
+      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/pausemenu.png",
       technologies: ["Lua", "HTML/CSS", "JavaScript"],
       features: [
           "Minimal and modern pause menu interface",
@@ -117,7 +17,113 @@ const fivemProjects = [
       github: "",
       demo: "https://youtu.be/Sp3mmYRLH04",
       category: "util"
-    }
+  },
+
+  {
+      id: 2,
+      title: "rm_multicharacter",
+      description: "A fully redesigned multicharacter UI for FiveM with smooth animations, modern visuals, and an immersive character selection experience. Built as a visual upgrade over the default Qbox multicharacter system.",
+      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png",
+      technologies: ["Lua", "HTML/CSS", "JavaScript"],
+      features: [
+          "Modern and animated character selection UI",
+          "Smooth camera transitions between characters",
+          "Custom character preview with detailed info",
+          "Interactive UI with hover effects and transitions",
+          "Easy configuration for UI elements and layout",
+          "Optimized performance and clean design"
+      ],
+      github: "",
+      demo: "https://youtu.be/oZZ0dTBhb2E",
+      category: "util"
+  },
+
+  {
+      id: 3,
+      title: "rm_radiolist",
+      description: "Based on the original X-RADIOLIST script with an updated visual design and movable radio list UI.",
+      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_22_51PM.png",
+      technologies: ["Lua", "HTML/CSS", "JavaScript"],
+      features: [
+          "Config to display players' RP names",
+          "Custom player colors while talking on radio",
+          "Custom radio channel names",
+          "Interactive and immersive UI"
+      ],
+      github: "https://github.com/Anxxity/rm_radiolist",
+      demo: "https://youtu.be/DnbDkBv0urY",
+      category: "util"
+  },
+
+  {
+      id: 4,
+      title: "RM PvP Leaderboard System (standalone / oxmysql)",
+      description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
+      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202612_54_47PM.png",
+      technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
+      features: [
+          "Lobby creation and joining",
+          "Location selection",
+          "Weapon loadout selection",
+          "Interactive and immersive UI"
+      ],
+      github: "",
+      demo: "https://youtu.be/ksKkO0hUC3c",
+      category: "PvP"
+  },
+
+  {
+      id: 5,
+      title: "PvP Leaderboard",
+      description: "Track player performance in real time with a responsive leaderboard interface showing combat statistics and rankings.",
+      image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/leaderboard_v2.png",
+      technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
+      features: [
+          "Real-time K/D tracking",
+          "Top 10 players displayed in UI",
+          "Player match history",
+          "Easy integration with other resources",
+          "Simple and clean UI"
+      ],
+      github: "",
+      demo: "https://www.youtube.com/watch?v=zPHSEM_edBI",
+      category: "PvP"
+  },
+
+  {
+      id: 6,
+      title: "PvP Profile System",
+      description: "Track every player's performance in real time with a sleek and responsive PvP profile interface.",
+      image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
+      technologies: ["Lua", "JavaScript", "ESX", "MySQL", "HTML/CSS"],
+      features: [
+          "Real-time K/D tracking",
+          "Weapon statistics",
+          "Top players displayed as peds",
+          "Interactive UI integration"
+      ],
+      github: "",
+      demo: "",
+      category: "PvP"
+  },
+
+  {
+      id: 7,
+      title: "Safezone Creator",
+      description: "Create and manage safezones in-game with a live configuration UI supporting multiple zone types and integrations.",
+      image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
+      technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
+      features: [
+          "In-game safezone creation and editing",
+          "Weapon whitelist and job restrictions",
+          "Custom notifications and texts",
+          "Enter/exit script events",
+          "Save zones to JSON or SQL"
+      ],
+      github: "",
+      demo: "",
+      category: "util"
+  }
 
 ];
 
