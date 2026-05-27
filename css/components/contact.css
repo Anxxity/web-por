@@ -1,0 +1,48 @@
+.contact-content {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
+    gap: 1.25rem;
+}
+
+.contact-info,
+.contact-form {
+    padding: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.contact-item {
+    margin-bottom: 0.75rem;
+    overflow-wrap: anywhere;
+}
+
+.social-links {
+    margin-top: 1.15rem;
+}
+
+.form-group {
+    margin-bottom: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: var(--field-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 0.88rem 0.95rem;
+    font: inherit;
+    font-weight: 620;
+    resize: vertical;
+    transition: var(--transition);
+}
+
+.form-group textarea {
+    min-height: 136px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--hover-border);
+    box-shadow: 0 0 0 4px var(--focus-ring);
+}

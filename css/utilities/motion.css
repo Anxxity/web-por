@@ -1,0 +1,41 @@
+.reveal,
+.reveal-stagger {
+    opacity: 0;
+    transform: translateY(var(--reveal-offset, 24px));
+    transition:
+        opacity var(--reveal-duration, 0.55s) ease,
+        transform var(--reveal-duration, 0.55s) ease;
+}
+
+.reveal-stagger {
+    --reveal-offset: 20px;
+    --reveal-duration: 0.45s;
+}
+
+.reveal.is-visible,
+.reveal-stagger.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes modalIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}

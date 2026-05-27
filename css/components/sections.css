@@ -1,0 +1,26 @@
+.section-header {
+    max-width: 42rem;
+    margin-bottom: 3.5rem;
+}
+
+.featured-projects .section-header,
+.fivem-projects .section-header,
+.projects .section-header {
+    max-width: none;
+}
+
+.section-title {
+    font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1.05rem;
+    max-width: 32rem;
+    line-height: 1.75;
+}

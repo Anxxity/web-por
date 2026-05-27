@@ -1,0 +1,119 @@
+.hero {
+    min-height: auto;
+    position: relative;
+    display: grid;
+    align-items: center;
+    padding: clamp(140px, 18vh, 180px) 0 clamp(100px, 14vh, 140px);
+    overflow: hidden;
+}
+
+.hero-3d {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(105deg, var(--bg-primary) 0%, var(--hero-fade-mid) 42%, var(--hero-fade-soft) 72%, transparent 100%),
+        linear-gradient(to bottom, transparent 70%, var(--bg-primary) 100%);
+}
+
+.hero-container,
+.scroll-indicator {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    max-width: 640px;
+}
+
+.hero-tags {
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.25rem;
+}
+
+.hero-tags span {
+    color: var(--accent-color);
+    margin: 0 0.35rem;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6.5vw, 4rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    max-width: 34rem;
+    font-size: clamp(1.02rem, 2vw, 1.15rem);
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 2.25rem;
+}
+
+.hero-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 3.5rem;
+    margin-top: 3rem;
+}
+
+.hero-metric strong {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.hero-metric span {
+    font-size: 0.82rem;
+    font-weight: 650;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.hero-metric-stack strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.hero-buttons,
+.modal-links {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.scroll-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+}
+
+.scroll-indicator a {
+    color: var(--text-primary);
+    font-size: 1.22rem;
+    opacity: 0.72;
+}

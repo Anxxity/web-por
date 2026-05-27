@@ -1,0 +1,48 @@
+.project-filters,
+.tutorial-filters {
+    display: flex;
+    gap: 0.25rem 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tutorial-filters {
+    justify-content: center;
+}
+
+.filter-bar--center {
+    justify-content: center;
+}
+
+.filter-bar .filter-underline {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--primary-color);
+    border-radius: 2px;
+    transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1), width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.filter-btn {
+    min-height: 40px;
+    padding: 0.5rem 0.15rem;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 0;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    color: var(--text-primary);
+}

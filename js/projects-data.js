@@ -1,128 +1,196 @@
+const featuredProjectIds = [1, 2, 4];
 
 const fivemProjects = [
   {
       id: 1,
       title: "RM Pause Menu",
-      description: "A clean and modern pause menu UI for FiveM built for ESX, QBCore, and QBOX frameworks. Designed with performance, simplicity, and immersion in mind to give your server a premium in-game experience.",
+      description: "Custom pause menu UI for ESX, QBCore, and QBOX with player stats, settings, and smooth NUI transitions.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/pausemenu.png",
-      technologies: ["Lua", "HTML/CSS", "JavaScript"],
+      technologies: ["Lua", "NUI", "JavaScript"],
+      frameworks: ["ESX", "QBCore", "QBOX"],
+      version: "2.1.0",
       features: [
-          "Minimal and modern pause menu interface",
-          "Player information display (job, cash, bank)",
-          "Smooth UI animations and transitions",
-          "Fully customizable layout and styling",
-          "Lightweight and performance optimized",
-          "Compatible with ESX, QBCore, and QBOX frameworks"
+          "Minimal pause menu with job, cash, and bank",
+          "Smooth open/close animations",
+          "Fully themeable via config",
+          "Low idle resmon footprint"
       ],
       github: "",
       demo: "https://youtu.be/Sp3mmYRLH04",
-      category: "util"
+      category: "ui",
+      featured: true,
+      problem: "Default pause menu looked outdated and broke immersion on roleplay servers.",
+      solution: "Built a fully custom NUI pause menu with animated panels and framework-aware player data.",
+      result: "Servers report stronger brand identity and faster player navigation to settings.",
+      challenges: "Keeping NUI responsive while syncing live economy data from three frameworks.",
+      performance: "Sub-0.02ms idle; UI assets loaded once on resource start.",
+      gallery: [
+          "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/pausemenu.png"
+      ]
   },
 
   {
       id: 2,
       title: "rm_multicharacter",
-      description: "A fully redesigned multicharacter UI for FiveM with smooth animations, modern visuals, and an immersive character selection experience. Built as a visual upgrade over the default Qbox multicharacter system.",
+      description: "Redesigned multicharacter flow with camera transitions, character previews, and Qbox-ready configuration.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png",
-      technologies: ["Lua", "HTML/CSS", "JavaScript"],
+      technologies: ["Lua", "NUI", "JavaScript"],
+      frameworks: ["QBOX", "QBCore"],
+      version: "1.4.0",
       features: [
-          "Modern and animated character selection UI",
-          "Smooth camera transitions between characters",
-          "Custom character preview with detailed info",
-          "Interactive UI with hover effects and transitions",
-          "Easy configuration for UI elements and layout",
-          "Optimized performance and clean design"
+          "Animated character carousel",
+          "Per-slot camera and lighting",
+          "Configurable layout JSON",
+          "Hover-driven character details"
       ],
       github: "",
       demo: "https://youtu.be/oZZ0dTBhb2E",
-      category: "util"
+      category: "ui",
+      featured: true,
+      problem: "Stock multicharacter UI felt flat and slowed down new player onboarding.",
+      solution: "Rebuilt selection as a cinematic NUI with staged cameras and instant slot switching.",
+      result: "Cleaner first-login flow and higher perceived server quality.",
+      challenges: "Synchronizing ped previews with async character data without frame drops.",
+      performance: "Camera blends cached; NUI updates debounced to 60fps cap.",
+      gallery: [
+          "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_35_55PM.png"
+      ]
   },
 
   {
       id: 3,
       title: "rm_radiolist",
-      description: "Based on the original X-RADIOLIST script with an updated visual design and movable radio list UI.",
+      description: "Movable radio list UI with channel labels, talking indicators, and RP name display.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_22_51PM.png",
-      technologies: ["Lua", "HTML/CSS", "JavaScript"],
+      technologies: ["Lua", "NUI", "JavaScript"],
+      frameworks: ["Standalone"],
+      version: "1.0.2",
       features: [
-          "Config to display players' RP names",
-          "Custom player colors while talking on radio",
-          "Custom radio channel names",
-          "Interactive and immersive UI"
+          "Drag-and-drop radio panel",
+          "Per-player talk highlights",
+          "Custom channel naming",
+          "RP name from config"
       ],
       github: "https://github.com/Anxxity/rm_radiolist",
       demo: "https://youtu.be/DnbDkBv0urY",
-      category: "util"
+      category: "experimental",
+      problem: "Legacy radio list was static and hard to read during busy comms.",
+      solution: "Refreshed UI with movable window and color-coded active speakers.",
+      result: "Faster callouts for staff and gang radio channels.",
+      challenges: "Matching voice activity events to the correct UI row in real time.",
+      performance: "DOM diffing on talk events only; no full re-render per frame.",
+      gallery: [
+          "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr15202602_22_51PM.png"
+      ]
   },
 
   {
       id: 4,
-      title: "RM PvP Leaderboard System (standalone / oxmysql)",
-      description: "Custom PvP server lobby interface with lobby list, location selection, and weapon selection.",
+      title: "PvP System",
+      description: "End-to-end PvP lobby: create rooms, pick maps, choose loadouts, and jump into matches.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202612_54_47PM.png",
-      technologies: ["Lua", "ESX", "HTML/CSS", "JavaScript"],
+      technologies: ["Lua", "oxmysql", "NUI"],
+      frameworks: ["ESX", "Standalone"],
+      version: "3.0.0",
       features: [
-          "Lobby creation and joining",
-          "Location selection",
-          "Weapon loadout selection",
-          "Interactive and immersive UI"
+          "Lobby browser with live slots",
+          "Map and weapon selection",
+          "Match state sync",
+          "Admin kick and lock tools"
       ],
       github: "",
       demo: "https://youtu.be/ksKkO0hUC3c",
-      category: "PvP"
+      category: "pvp",
+      featured: true,
+      problem: "Ad-hoc PvP events required manual teleporting and weapon giving.",
+      solution: "Shipped a self-serve lobby NUI wired to oxmysql match records.",
+      result: "Staff run PvP nights with under 2 minutes setup per event.",
+      challenges: "Race conditions when multiple players join the last lobby slot.",
+      performance: "DB writes batched; UI polls every 2s instead of per-frame.",
+      gallery: [
+          "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202612_54_47PM.png"
+      ]
   },
 
   {
       id: 5,
       title: "PvP Leaderboard",
-      description: "Track player performance in real time with a responsive leaderboard interface showing combat statistics and rankings.",
+      description: "Live K/D leaderboard with top 10 board, match history, and oxmysql persistence.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/leaderboard_v2.png",
-      technologies: ["Lua", "oxmysql", "Qbox", "HTML/CSS", "JavaScript"],
+      technologies: ["Lua", "oxmysql", "Qbox", "NUI"],
+      frameworks: ["QBOX", "oxmysql"],
+      version: "2.2.0",
       features: [
           "Real-time K/D tracking",
-          "Top 10 players displayed in UI",
-          "Player match history",
-          "Easy integration with other resources",
-          "Simple and clean UI"
+          "Top 10 leaderboard panel",
+          "Per-player match history",
+          "Export-friendly stats API"
       ],
       github: "",
       demo: "https://www.youtube.com/watch?v=zPHSEM_edBI",
-      category: "PvP"
+      category: "pvp",
+      problem: "No single view of seasonal PvP performance for players.",
+      solution: "Responsive leaderboard NUI backed by indexed oxmysql tables.",
+      result: "Players revisit stats after matches; staff use it for rewards.",
+      challenges: "Indexing queries for 500+ active fighters without server hitch.",
+      performance: "Leaderboard cache refreshes every 5s; writes async.",
+      gallery: [
+          "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/leaderboard_v2.png"
+      ]
   },
 
   {
       id: 6,
       title: "PvP Profile System",
-      description: "Track every player's performance in real time with a sleek and responsive PvP profile interface.",
+      description: "Per-player PvP profile with weapon stats, K/D breakdown, and top-player ped showcase.",
       image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
-      technologies: ["Lua", "JavaScript", "ESX", "MySQL", "HTML/CSS"],
+      technologies: ["Lua", "MySQL", "NUI", "ESX"],
+      frameworks: ["ESX"],
+      version: "1.1.0",
       features: [
-          "Real-time K/D tracking",
-          "Weapon statistics",
-          "Top players displayed as peds",
-          "Interactive UI integration"
+          "Weapon-specific stats",
+          "Profile NUI with ped preview",
+          "Seasonal rank badges",
+          "Integration hooks for PvP System"
       ],
       github: "",
       demo: "",
-      category: "PvP"
+      category: "pvp",
+      problem: "Players could not inspect detailed combat history in-game.",
+      solution: "Profile NUI with aggregated weapon and match data from MySQL.",
+      result: "Deeper engagement loop tied to the PvP leaderboard.",
+      challenges: "Rendering top-player peds without blocking the main thread.",
+      performance: "Ped spawn deferred; stats fetched in one query.",
+      gallery: [
+          "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true"
+      ]
   },
 
   {
       id: 7,
       title: "Safezone Creator",
-      description: "Create and manage safezones in-game with a live configuration UI supporting multiple zone types and integrations.",
+      description: "In-game safezone editor with PolyZone, job rules, weapon whitelist, and JSON/SQL export.",
       image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
-      technologies: ["Lua", "PolyZone", "ox_lib", "ESX/QBCore", "HTML/CSS"],
+      technologies: ["Lua", "PolyZone", "ox_lib", "NUI"],
+      frameworks: ["ESX", "QBCore"],
+      version: "1.3.0",
       features: [
-          "In-game safezone creation and editing",
-          "Weapon whitelist and job restrictions",
-          "Custom notifications and texts",
+          "Draw zones in-world",
+          "Job and weapon restrictions",
           "Enter/exit script events",
-          "Save zones to JSON or SQL"
+          "JSON or SQL persistence"
       ],
       github: "",
       demo: "",
-      category: "util"
+      category: "framework",
+      problem: "Safezones were hard-coded and required dev restarts to tweak.",
+      solution: "Live creator UI with PolyZone export and framework-aware rules.",
+      result: "Admins publish new zones in minutes without downtime.",
+      challenges: "Validating overlapping zones and edge collisions.",
+      performance: "Zones loaded once; point-in-poly checks optimized.",
+      gallery: [
+          "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true"
+      ]
   }
 
 ];
@@ -254,20 +322,20 @@ const otherProjects = [
 ];
 
 const skills = [
+    { name: "Robotics & Automation", icon: "fas fa-robot", level: 96 },
     { name: "Lua", icon: "fab fa-js-square", level: 95 },
-    { name: "Database Design", icon: "fas fa-database", level: 90 },
+    { name: "Web Development", icon: "fab fa-html5", level: 90 },
+    { name: "Game Development", icon: "fas fa-gamepad", level: 90 },
+    { name: "Python", icon: "fab fa-python", level: 85 },
     { name: "Server Management", icon: "fas fa-server", level: 85 },
-    { name: "Web Development", icon: "fab fa-html5", level: 92 },
-    { name: "Game Development", icon: "fas fa-gamepad", level: 88 },
-    { name: "Robotics & Automation", icon: "fas fa-robot", level: 90 },
-    { name: "Python", icon: "fab fa-python", level: 85 }
+    { name: "Database Design", icon: "fas fa-database", level: 80 },
 ];
 
 
 const stats = [
-    { number: "10+", label: "Projects Completed" },
-    { number: "100%", label: "Client Satisfaction" },
-    { number: "24/7", label: "Support Available" }
+    { number: "15+", label: "Projects" },
+    { number: "3+", label: "Years Building" },
+    { number: "100+", label: "UI Screens" }
 ];
 
 
@@ -286,10 +354,10 @@ const contactInfo = {
 
 const personalInfo = {
     name: "Remin Mohammed",
-    title: "Robotics Engineer",
+    title: "FiveM Systems • UI • Robotics",
     bio: [
-        "I'm a dedicated developer with a passion for creating engaging digital experiences. My journey began with FiveM development, where I've built custom resources, server frameworks, and immersive roleplay systems.",
-        "Beyond gaming, I work on various software projects including web applications, automation tools, and innovative solutions that solve real-world problems."
+        "I build immersive FiveM systems, custom game interfaces, and robotics projects.",
+        "Focused on performance, clean UI, and scalable architecture."
     ]
 };
 
@@ -625,6 +693,120 @@ const tutorials = [
     }
   ],
   "tags": ["FiveM", "Lua", "NUI", "HTML", "CSS", "JavaScript", "GTA V", "Game Scripting"]
+},
+{
+  "id": 6,
+  "title": "Complete ROS2 Development Cheat Sheet — Beginner to Advanced Robotics Engineering",
+  "description": "A comprehensive ROS2 developer cheat sheet that teaches the complete ROS2 workflow from beginner to production robotics. Covers architecture, nodes, communication, simulation, navigation, robot modeling, debugging, optimization, deployment, and real robot integration.",
+
+  "image": "https://docs.ros.org/en/humble/_static/ros_logo.svg",
+
+  "category": "robotics",
+
+  "difficulty": "Beginner → Advanced",
+
+  "duration": "8–12 Hours",
+
+  "content": [
+
+    {
+      "heading": "Overview",
+
+      "text": "ROS2 (Robot Operating System 2) is a robotics middleware platform used to build autonomous robots, mobile robots, robotic arms, industrial automation systems, and AI-powered robotics.\n\nUnlike traditional applications, ROS2 applications are distributed systems where multiple programs communicate together using Topics, Services, Actions, and DDS middleware.\n\nROS2 improves over ROS1 by introducing:\n\n• DDS communication\n• Multi-machine support\n• Real-time capability\n• Better security\n• Lifecycle management\n• Better Windows support\n• Embedded support through MicroROS"
+    },
+
+    {
+      "heading": "Understanding ROS2 Architecture",
+
+      "text": "Before writing code, understand the full ROS2 architecture.\n\n```text\nRobot Application\n│\n├── Node\n│     ├── Publisher\n│     ├── Subscriber\n│     ├── Service\n│     ├── Action\n│     └── Parameters\n│\n├── Topics\n├── TF2\n├── DDS\n├── Launch System\n└── Visualization\n```\n\nExplanation:\n\nNode → Individual process.\n\nTopic → Continuous data stream.\n\nService → Instant request/response.\n\nAction → Long-running operations.\n\nDDS → Middleware handling communication.\n\nTF → Coordinate transformations."
+    },
+
+    {
+      "heading": "Installing ROS2",
+
+      "text": "Install ROS2 Humble:\n\n```bash\nsudo apt update\nsudo apt install ros-humble-desktop\n```\n\nLoad environment:\n\n```bash\nsource /opt/ros/humble/setup.bash\n```\n\nMake permanent:\n\n```bash\necho 'source /opt/ros/humble/setup.bash' >> ~/.bashrc\nsource ~/.bashrc\n```\n\nVerify installation:\n\n```bash\nprintenv | grep ROS\n```\n\nExpected variables:\n\n```text\nROS_VERSION\nROS_DISTRO\nROS_PYTHON_VERSION\n```"
+    },
+
+    {
+      "heading": "Creating Your First Workspace",
+
+      "text": "ROS2 development happens inside workspaces.\n\nCreate workspace:\n\n```bash\nmkdir -p ~/ros2_ws/src\ncd ~/ros2_ws\n```\n\nBuild:\n\n```bash\ncolcon build\n```\n\nSource:\n\n```bash\nsource install/setup.bash\n```\n\nWorkspace structure:\n\n```text\nros2_ws/\n├── src/\n├── build/\n├── install/\n└── log/\n```\n\nDevelopment cycle:\n\nEdit → Build → Source → Run"
+    },
+
+    {
+      "heading": "Creating Packages",
+
+      "text": "ROS2 code is organized into packages.\n\nPython package:\n\n```bash\nros2 pkg create robot_pkg --build-type ament_python\n```\n\nC++ package:\n\n```bash\nros2 pkg create robot_cpp --build-type ament_cmake\n```\n\nWith dependencies:\n\n```bash\nros2 pkg create robot_pkg \\\n--build-type ament_python \\\n--dependencies rclpy std_msgs geometry_msgs\n```\n\nGenerated structure:\n\n```text\nrobot_pkg/\n├── package.xml\n├── setup.py\n├── launch/\n├── config/\n└── robot_pkg/\n```"
+    },
+
+    {
+      "heading": "Creating Your First Node",
+
+      "text": "Nodes are executable units in ROS2.\n\nPython Node:\n\n```python\nimport rclpy\nfrom rclpy.node import Node\n\nclass Robot(Node):\n\n    def __init__(self):\n        super().__init__('robot_node')\n\n        self.get_logger().info(\n            'Robot Started'\n        )\n\n\ndef main():\n\n    rclpy.init()\n\n    node=Robot()\n\n    rclpy.spin(node)\n\n    node.destroy_node()\n\n    rclpy.shutdown()\n\nmain()\n```\n\nRun:\n\n```bash\nros2 run robot_pkg robot\n```"
+    },
+
+    {
+      "heading": "Topics (Publisher ↔ Subscriber)",
+
+      "text": "Topics provide asynchronous communication.\n\nPublisher:\n\n```python\nself.publisher=self.create_publisher(\nString,\n'/chat',\n10\n)\n```\n\nPublish:\n\n```python\nmsg.data='hello'\nself.publisher.publish(msg)\n```\n\nSubscriber:\n\n```python\nself.create_subscription(\nString,\n'/chat',\nself.callback,\n10\n)\n```\n\nFlow:\n\n```text\nPublisher\n↓\nTopic\n↓\nSubscriber\n```\n\nDebug:\n\n```bash\nros2 topic list\nros2 topic echo\nros2 topic hz\n```"
+    },
+
+    {
+      "heading": "Services vs Actions",
+
+      "text": "Services:\n\n```text\nClient\n↓\nRequest\n↓\nServer\n↓\nResponse\n```\n\nExample:\n\n```text\nGet battery percentage\n```\n\nActions:\n\n```text\nGoal\n↓\nFeedback\n↓\nResult\n```\n\nExample:\n\n```text\nMove robot to destination\n```"
+    },
+
+    {
+      "heading": "Robot Visualization (RViz2)",
+
+      "text": "RViz2 helps visualize robot data.\n\nStart:\n\n```bash\nrviz2\n```\n\nUseful Displays:\n\n```text\nTF\nRobotModel\nLaserScan\nPointCloud\nImage\nMap\nMarker\n```\n\nTypical flow:\n\n```text\nRobot\n↓\nTopics\n↓\nRViz2\n```"
+    },
+
+    {
+      "heading": "TF2 Coordinate System",
+
+      "text": "TF2 manages coordinate transforms.\n\nExample:\n\n```text\nmap\n↓\nodom\n↓\nbase_link\n↓\ncamera\n```\n\nCommands:\n\n```bash\nros2 run tf2_tools view_frames\nros2 run tf2_ros tf2_echo\n```"
+    },
+
+    {
+      "heading": "Simulation with Gazebo",
+
+      "text": "Launch simulation:\n\n```bash\nros2 launch gazebo_ros gazebo.launch.py\n```\n\nSpawn robot:\n\n```bash\nspawn_entity.py\n```\n\nSimulation stack:\n\n```text\nURDF\n↓\nGazebo\n↓\nROS2\n↓\nRViz\n```"
+    },
+
+    {
+      "heading": "Navigation Stack (Nav2)",
+
+      "text": "Nav2 allows autonomous navigation.\n\nPipeline:\n\n```text\nMap\n↓\nLocalization\n↓\nGlobal Planner\n↓\nController\n↓\nMotor\n```\n\nLaunch:\n\n```bash\nros2 launch nav2_bringup navigation_launch.py\n```\n\nFeatures:\n\n• Path planning\n• Obstacle avoidance\n• Recovery behaviors\n• Goal navigation"
+    },
+
+    {
+      "heading": "Real Robot Deployment",
+
+      "text": "Production robot architecture:\n\n```text\nESP32\n↓\nMicroROS\n↓\nROS2\n↓\nNavigation\n↓\nMotor Driver\n```\n\nUseful packages:\n\n```text\nmicro_ros\nrobot_localization\nslam_toolbox\nmoveit2\nnav2\n```"
+    },
+
+    {
+      "heading": "Advanced ROS2",
+
+      "text": "Senior-level concepts:\n\n```text\nExecutors\nLifecycle Nodes\nComposition\nRealtime Linux\nDDS Tuning\nZero Copy\nShared Memory\nMulti Robot\nBehavior Trees\nCUDA Integration\n```\n\nProduction debugging:\n\n```bash\nros2 trace\nhtop\nrqt_graph\n```"
+    }
+
+  ],
+
+  "tags": [
+    "ROS2",
+    "Robotics",
+    "Gazebo",
+    "RViz",
+    "Navigation",
+    "MoveIt2",
+    "DDS",
+    "Python",
+    "C++",
+    "MicroROS"
+  ]
 }
 
 
@@ -633,8 +815,8 @@ const tutorials = [
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
+        featuredProjectIds,
         fivemProjects,
-        roboticsProjects,
         otherProjects,
         skills,
         stats,

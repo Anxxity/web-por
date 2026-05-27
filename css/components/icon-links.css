@@ -1,0 +1,26 @@
+.project-links,
+.social-links {
+    display: flex;
+    gap: 0.72rem;
+    flex-wrap: wrap;
+}
+
+.project-link,
+.social-link {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.92);
+    color: #0f172a;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.project-link:hover,
+.social-link:hover {
+    background: var(--accent-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+}

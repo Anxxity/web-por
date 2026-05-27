@@ -1,0 +1,116 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    transition: height 0.28s ease, background 0.28s ease, box-shadow 0.28s ease, backdrop-filter 0.28s ease;
+}
+
+.navbar.is-scrolled {
+    background: var(--nav-scrolled-bg);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--border-color);
+}
+
+.nav-container {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: height 0.28s ease;
+}
+
+.navbar.is-scrolled .nav-container {
+    height: 58px;
+}
+
+.nav-logo a,
+.nav-brand {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+}
+
+.nav-brand {
+    font-size: 1.05rem;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.94rem;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.theme-toggle,
+.nav-toggle {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover,
+.nav-toggle:hover {
+    border-color: var(--hover-border);
+    transform: translateY(-1px);
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.bar {
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    margin: 2px 0;
+    transition: var(--transition);
+}

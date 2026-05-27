@@ -1,0 +1,92 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #0f172a;
+    --accent-color: #14b8a6;
+    --warm-color: #f59e0b;
+
+    --text-primary: #111827;
+    --text-secondary: #526070;
+    --text-light: #8b98a8;
+
+    --bg-primary: #f8fafc;
+    --bg-secondary: #eef4fb;
+    --bg-dark: #0b1020;
+
+    --surface: rgba(255, 255, 255, 0.78);
+    --surface-solid: #ffffff;
+    --border-color: rgba(15, 23, 42, 0.12);
+    --nav-bg: rgba(248, 250, 252, 0.82);
+    --nav-scrolled-bg: rgba(248, 250, 252, 0.72);
+    --card-bg: rgba(255, 255, 255, 0.86);
+    --card-border: rgba(15, 23, 42, 0.1);
+    --field-bg: rgba(255, 255, 255, 0.88);
+    --tag-bg: rgba(37, 99, 235, 0.08);
+    --tag-text: #1d4ed8;
+    --subtle-fill: rgba(255, 255, 255, 0.55);
+
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    --shadow-hover: 0 12px 32px rgba(15, 23, 42, 0.1);
+
+    --radius: 20px;
+    --section-gap: 128px;
+    --content-gap: 2rem;
+    --max-width: 1280px;
+    --page-padding: clamp(20px, 3vw, 48px);
+    --transition: all 0.24s ease;
+
+    --scrollbar-track: #e8eef5;
+    --scrollbar-thumb: #94a8c4;
+    --scrollbar-thumb-hover: #2563eb;
+
+    --hero-fade-mid: rgba(248, 250, 252, 0.72);
+    --hero-fade-soft: rgba(248, 250, 252, 0.2);
+    --hero-fade-mid-mobile: rgba(248, 250, 252, 0.88);
+    --hero-fade-soft-mobile: rgba(248, 250, 252, 0.42);
+    --grid-line: rgba(15, 23, 42, 0.018);
+    --focus-ring: rgba(37, 99, 235, 0.12);
+    --hover-border: rgba(37, 99, 235, 0.42);
+    --card-hover-border: rgba(37, 99, 235, 0.18);
+}
+
+[data-theme="dark"] {
+    --primary-color: #60a5fa;
+    --secondary-color: #f8fafc;
+    --accent-color: #2dd4bf;
+    --warm-color: #fbbf24;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #c5d0df;
+    --text-light: #94a3b8;
+
+    --bg-primary: #070b14;
+    --bg-secondary: #0f172a;
+    --bg-dark: #030712;
+
+    --surface: rgba(15, 23, 42, 0.76);
+    --surface-solid: #111827;
+    --border-color: rgba(226, 232, 240, 0.14);
+    --nav-bg: rgba(7, 11, 20, 0.78);
+    --nav-scrolled-bg: rgba(7, 11, 20, 0.82);
+    --card-bg: rgba(15, 23, 42, 0.78);
+    --card-border: rgba(226, 232, 240, 0.12);
+    --field-bg: rgba(15, 23, 42, 0.85);
+    --tag-bg: rgba(96, 165, 250, 0.14);
+    --tag-text: #bfdbfe;
+    --subtle-fill: rgba(15, 23, 42, 0.52);
+
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+    --shadow-hover: 0 14px 36px rgba(0, 0, 0, 0.3);
+
+    --scrollbar-track: #111827;
+    --scrollbar-thumb: #334155;
+    --scrollbar-thumb-hover: #60a5fa;
+
+    --hero-fade-mid: rgba(7, 11, 20, 0.75);
+    --hero-fade-soft: rgba(7, 11, 20, 0.25);
+    --hero-fade-mid-mobile: rgba(7, 11, 20, 0.9);
+    --hero-fade-soft-mobile: rgba(7, 11, 20, 0.45);
+    --grid-line: rgba(226, 232, 240, 0.022);
+    --focus-ring: rgba(96, 165, 250, 0.12);
+    --hover-border: rgba(96, 165, 250, 0.5);
+    --card-hover-border: rgba(96, 165, 250, 0.22);
+}

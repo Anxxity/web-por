@@ -1,0 +1,7 @@
+.container,
+.hero-container,
+.nav-container {
+    width: min(var(--max-width), calc(100% - 2 * var(--page-padding)));
+    max-width: 100%;
+    margin: 0 auto;
+}

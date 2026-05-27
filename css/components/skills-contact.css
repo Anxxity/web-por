@@ -1,0 +1,31 @@
+.skills h3,
+.contact-info h3 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.75rem;
+}
+
+.skill-item,
+.contact-item {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem;
+    background: var(--subtle-fill);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-weight: 750;
+}
+
+.skill-item i,
+.contact-item i {
+    color: var(--accent-color);
+    font-size: 1.25rem;
+}
