@@ -201,67 +201,101 @@ function initTutorialFilters() {
 }
 
 function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    if (!contactForm) return;
-    const contactEndpoint = 'https://webhook.reminmohammed123.workers.dev/';
+    const contactForm = document.getElementById("contact-form");
 
-    contactForm.addEventListener('submit', async function(e) {
+    if (!contactForm) return;
+
+    const contactEndpoint =
+        "https://webhook.reminmohammed123.workers.dev/";
+
+    contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const formData = new FormData(this);
-        const name = formData.get('name')?.trim();
-        const email = formData.get('email')?.trim();
-        const subject = formData.get('subject')?.trim();
-        const message = formData.get('message')?.trim();
+
+        const name = formData.get("name")?.trim();
+        const email = formData.get("email")?.trim();
+        const subject = formData.get("subject")?.trim();
+        const message = formData.get("message")?.trim();
 
         if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
+            showNotification(
+                "Please fill in all fields",
+                "error"
+            );
             return;
         }
 
         if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
+            showNotification(
+                "Please enter a valid email",
+                "error"
+            );
             return;
         }
 
-        const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
+        const submitButton =
+            contactForm.querySelector(
+                'button[type="submit"]'
+            );
 
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        const originalText =
+            submitButton.innerHTML;
+
         submitButton.disabled = true;
+
+        submitButton.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
         const payload = {
             name,
             email,
             subject,
-            message: `Project type: ${subject}\n\n${message}`
+            message
         };
 
-
-
         try {
-            const response = await fetch("https://webhook.reminmohammed123.workers.dev/", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: name,
-    email: email,
-    message: message
-  })
-})
+            const response =
+                await fetch(contactEndpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify(
+                        payload
+                    )
+                });
 
-            if (!response.ok) throw new Error(`Contact endpoint returned ${response.status}`);
+            const result =
+                await response.json();
 
-            showNotification('Message sent successfully. I\'ll get back to you soon.', 'success');
+            if (!response.ok) {
+                throw new Error(
+                    result.error ||
+                        "Request failed"
+                );
+            }
+
+            showNotification(
+                "Message sent successfully.",
+                "success"
+            );
+
             contactForm.reset();
-        } catch (error) {
-            console.error('Contact form webhook error:', error);
-            showNotification('Message could not be sent. Please try again later.', 'error');
+        } catch (err) {
+            console.error(err);
+
+            showNotification(
+                "Message could not be sent.",
+                "error"
+            );
         } finally {
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
+            submitButton.disabled =
+                false;
+
+            submitButton.innerHTML =
+                originalText;
         }
     });
 }
