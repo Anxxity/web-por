@@ -284,7 +284,7 @@ function initContactForm() {
 
             contactForm.reset();
         } catch (err) {
-            console.error(err);
+            // console.error(err);
 
             showNotification(
                 "Message could not be sent.",

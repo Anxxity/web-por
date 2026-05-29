@@ -118,6 +118,7 @@ const fivemProjects = [
       description: "Live K/D leaderboard with top 10 board, match history, and oxmysql persistence.",
       image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/leaderboard_v2.png",
       technologies: ["Lua", "oxmysql", "Qbox", "NUI"],
+      featured: false,
       frameworks: ["QBOX", "oxmysql"],
       version: "2.2.0",
       features: [
@@ -145,6 +146,7 @@ const fivemProjects = [
       description: "Per-player PvP profile with weapon stats, K/D breakdown, and top-player ped showcase.",
       image: "https://github.com/Anxxity/web-por/blob/main/asses/pvpprfile.png?raw=true",
       technologies: ["Lua", "MySQL", "NUI", "ESX"],
+      featured: false,
       frameworks: ["ESX"],
       version: "1.1.0",
       features: [
@@ -172,6 +174,7 @@ const fivemProjects = [
       description: "In-game safezone editor with PolyZone, job rules, weapon whitelist, and JSON/SQL export.",
       image: "https://github.com/Anxxity/web-por/blob/main/asses/safezonecreator.png?raw=true",
       technologies: ["Lua", "PolyZone", "ox_lib", "NUI"],
+      featured: false,
       frameworks: ["ESX", "QBCore"],
       version: "1.3.0",
       features: [
@@ -204,6 +207,7 @@ const otherProjects = [
         description: "A cheap alternative for stream deck . Cheap deck",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202603_38_37PM.png",
         technologies: [ "Arduino Uno", "tft touch screen"],
+        featured: true,
         features: [
            "Touchscreen Interface",
            "Keyboard Shortcuts",
@@ -219,6 +223,7 @@ const otherProjects = [
         description: "Automated wheelchair controlled via eye-tracking using Raspberry Pi and Arduino.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/wc.png",
         technologies: ["Python", "Raspberry Pi", "Arduino", "GazeTracking Library", "MY1016Z2 Motor", "BTS7960 Driver"],
+        featured: true,
         features: [
             "Real-time eye tracking",
             "USB communication between Pi and Arduino",
@@ -234,6 +239,7 @@ const otherProjects = [
         description: "AI-powered reception assistant running on Raspberry Pi with voice and display support.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/aimee.png",
         technologies: ["Python", "Raspberry Pi", "Google Generative AI"],
+        featured: true,
         features: [
             "Voice interaction",
             "reception",
@@ -249,6 +255,7 @@ const otherProjects = [
         description: "Arduino-based robot that detects and extinguishes fire using sensors and 3D printed components.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Fire+Extinguisher+Bot",
         technologies: ["Arduino Uno", "ESP", "Temperature & Smoke Sensors", "3D Printing"],
+        featured: false,
         features: [
             "Real-time fire detection",
             "Automatic extinguishing",
@@ -264,6 +271,7 @@ const otherProjects = [
         description: "Weather-sensing robot using ESP32 for temperature, humidity, and thunderstorm detection.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/student-innovations2.png",
         technologies: ["ESP32", "Sensors", "Arduino", "IoT"],
+        featured: false,
         features: [
             "Detects temperature, humidity, storms",
             "Sends real-time alerts",
@@ -280,6 +288,7 @@ const otherProjects = [
         description: "Arduino-based home automation using relays for controlling appliances.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Home+Automation",
         technologies: ["Arduino Uno", "Relays", "IoT"],
+        featured: false,
         features: [
             "Control home appliances remotely",
             "Automation scheduling",
@@ -295,6 +304,7 @@ const otherProjects = [
         description: "Autonomous beach cleaning robot with Pixhawk flight controller and Raspberry Pi mission planning.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Beach+Cleaning+Robot",
         technologies: ["Raspberry Pi", "Pixhawk", "ArduPilot", "Sensors", "Motors"],
+        featured: false,
         features: [
             "Mission planning with Pixhawk",
             "Autonomous navigation",
@@ -310,6 +320,7 @@ const otherProjects = [
         description: "Tracked rover controlled via Raspberry Pi and Arduino for mission-based tasks.",
         image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Track+Rover",
         technologies: ["Raspberry Pi", "Arduino Uno", "Motors", "SpeedyBee F405", "Mission Planner"],
+        featured: false,
         features: [
             "Track-based locomotion",
             "Remote mission control",

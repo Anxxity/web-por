@@ -180,11 +180,17 @@ function loadFeaturedProjects() {
         ? featuredProjectIds
         : fivemProjects.filter(p => p.featured).map(p => p.id);
 
-    ids.forEach(id => {
-        const project = fivemProjects.find(p => p.id === id);
-        if (project) {
-            grid.appendChild(buildProjectCard({ ...project, _source: 'fivem' }, { featured: true }));
-        }
+    const featuredFivemProjects = ids
+        .map(id => fivemProjects.find(p => p.id === id))
+        .filter(Boolean)
+        .map(project => ({ ...project, _source: 'fivem' }));
+
+    const featuredOtherProjects = otherProjects
+        .filter(project => project.featured)
+        .map(project => ({ ...project, _source: 'robotics' }));
+
+    [...featuredOtherProjects,...featuredFivemProjects].forEach(project => {
+        grid.appendChild(buildProjectCard(project, { featured: true }));
     });
 
     staggerCards(grid);
