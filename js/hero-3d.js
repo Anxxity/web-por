@@ -1,140 +1,142 @@
-(function () {
-    const canvas = document.getElementById('hero-3d');
-    if (!canvas || !window.THREE) return;
+import * as THREE from 'three';
+import { buildSo101Arm } from './so101-urdf-loader.js';
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 0.2, 8);
+const canvas = document.getElementById('hero-3d');
+if (!canvas) throw new Error('hero-3d canvas not found');
 
-    const renderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: true,
-        preserveDrawingBuffer: true
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 2, 0.1, 100);
+camera.position.set(0.4, 2.2, 11);
+camera.lookAt(0.9, 1.55, 0);
 
-    const group = new THREE.Group();
-    scene.add(group);
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    const geometry = new THREE.IcosahedronGeometry(1.42, 2);
-    const material = new THREE.MeshPhysicalMaterial({
-        color: 0x2563eb,
-        roughness: 0.38,
-        metalness: 0.18,
-        clearcoat: 0.72,
-        clearcoatRoughness: 0.22,
-        transmission: 0.12,
-        transparent: true,
-        opacity: 0.88
-    });
+function resize() {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize();
 
-    const core = new THREE.Mesh(geometry, material);
-    group.add(core);
+const particleGeo = new THREE.BufferGeometry();
+const pCount = 120;
+const pPos = new Float32Array(pCount * 3);
+for (let i = 0; i < pCount; i++) {
+  const r = 3.0 + Math.random() * 2.5;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+  pPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  pPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.6 + 2.0;
+  pPos[i * 3 + 2] = r * Math.cos(phi) * 0.5;
+}
+particleGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+scene.add(
+  new THREE.Points(
+    particleGeo,
+    new THREE.PointsMaterial({ color: 0x93c5fd, size: 0.038, transparent: true, opacity: 0.45 })
+  )
+);
 
-    const wire = new THREE.Mesh(
-        geometry,
-        new THREE.MeshBasicMaterial({
-            color: 0x14b8a6,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.22
-        })
-    );
-    wire.scale.setScalar(1.08);
-    group.add(wire);
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
+keyLight.position.set(4, 7, 5);
+keyLight.castShadow = true;
+scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0xc7e8ff, 1.1);
+fillLight.position.set(-4, 2, 3);
+scene.add(fillLight);
+const tealLight = new THREE.PointLight(0x14b8a6, 4.5, 10);
+tealLight.position.set(-2, 3, 3);
+scene.add(tealLight);
+const amberLight = new THREE.PointLight(0xf59e0b, 2.8, 8);
+amberLight.position.set(2.5, 5, 2);
+scene.add(amberLight);
+const rimLight = new THREE.DirectionalLight(0x14b8a6, 1.2);
+rimLight.position.set(0, 3, -6);
+scene.add(rimLight);
 
-    const ringMaterial = new THREE.MeshBasicMaterial({
-        color: 0xf59e0b,
-        transparent: true,
-        opacity: 0.5,
-        side: THREE.DoubleSide
-    });
+let targetX = 0;
+let targetY = 0;
+let smoothX = 0;
+let smoothY = 0;
 
-    for (let i = 0; i < 3; i += 1) {
-        const ring = new THREE.Mesh(
-            new THREE.TorusGeometry(2.05 + i * 0.24, 0.012, 16, 160),
-            ringMaterial.clone()
-        );
-        ring.rotation.x = Math.PI / 2.6 + i * 0.32;
-        ring.rotation.y = i * 0.48;
-        group.add(ring);
-    }
+window.addEventListener(
+  'pointermove',
+  (e) => {
+    targetX = (e.clientX / window.innerWidth) * 2 - 1;
+    targetY = (e.clientY / window.innerHeight) * 2 - 1;
+  },
+  { passive: true }
+);
 
-    const particleGeometry = new THREE.BufferGeometry();
-    const count = 170;
-    const positions = new Float32Array(count * 3);
+const clock = new THREE.Clock();
+let robot = null;
 
-    for (let i = 0; i < count; i += 1) {
-        const radius = 2.8 + Math.random() * 2.8;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos((Math.random() * 2) - 1);
-        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-        positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-        positions[i * 3 + 2] = radius * Math.cos(phi);
-    }
+const armStage = new THREE.Group();
+scene.add(armStage);
 
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+buildSo101Arm({ targetHeight: 6.0 })
+  .then((arm) => {
+    robot = arm;
+    robot.alignBaseToFloor(0);
+    armStage.position.set(5.05, -0.5, 0);
+    armStage.rotation.y = 0.22;
+    armStage.add(robot.arm);
+  })
+  .catch((err) => console.warn('Arm load failed:', err));
 
-    const particles = new THREE.Points(
-        particleGeometry,
-        new THREE.PointsMaterial({
-            color: 0x60a5fa,
-            size: 0.035,
-            transparent: true,
-            opacity: 0.58
-        })
-    );
-    group.add(particles);
+function updateArm(t) {
+  if (!robot) return;
 
-    scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+  const mx = -smoothX;
+  const my = -smoothY;
+  const reach = Math.sqrt(mx * mx + my * my);
+  const reachFactor = Math.min(1, reach * 1.15);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
-    keyLight.position.set(2.5, 3, 4);
-    scene.add(keyLight);
+  const targets = {
+    1: mx * 1.15,
+    2: -0.55 - my * 0.72,
+    3: 0.95 + my * 0.55 - reachFactor * 0.18,
+    4: null,
+    5: Math.sin(t * 0.35) * 0.18,
+    6: 0.35 + (Math.sin(t * 1.05) * 0.5 + 0.5) * 0.45,
+  };
 
-    const accentLight = new THREE.PointLight(0x14b8a6, 3, 12);
-    accentLight.position.set(-3.5, -1.5, 3);
-    scene.add(accentLight);
+  const blend = 0.09;
+  for (const id of ['1', '2', '3', '5', '6']) {
+    const current = robot.angles[id];
+    const next = robot.clampJoint(id, targets[id]);
+    robot.setJointAngle(id, current + (next - current) * blend);
+  }
 
-    let pointerX = 0;
-    let pointerY = 0;
+  const j2 = robot.angles['2'];
+  const j3 = robot.angles['3'];
+  const wristTarget = robot.clampJoint('4', -(j2 + j3) * 0.42 + 0.2);
+  const j4 = robot.angles['4'];
+  robot.setJointAngle('4', j4 + (wristTarget - j4) * blend);
+}
 
-    window.addEventListener('pointermove', (event) => {
-        pointerX = (event.clientX / window.innerWidth - 0.5) * 0.5;
-        pointerY = (event.clientY / window.innerHeight - 0.5) * 0.5;
-    }, { passive: true });
+function animate() {
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
 
-    function resize() {
-        const width = canvas.clientWidth || window.innerWidth;
-        const height = canvas.clientHeight || window.innerHeight;
-        renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+  smoothX += (targetX - smoothX) * 0.07;
+  smoothY += (targetY - smoothY) * 0.07;
 
-        group.position.x = width < 760 ? 1.1 : 2.45;
-        group.position.y = width < 760 ? 0.25 : 0;
-        group.scale.setScalar(width < 760 ? 0.78 : 1);
-    }
+  updateArm(t);
 
-    window.addEventListener('resize', resize);
-    resize();
+  const pulse = (Math.sin(t * 2.8) + 1) * 0.5;
+  tealLight.intensity = 3.5 + pulse * 2.5;
+  tealLight.position.x = Math.sin(t * 0.3) * 3;
+  tealLight.position.z = Math.cos(t * 0.3) * 3;
 
-    const clock = new THREE.Clock();
+  renderer.render(scene, camera);
+}
 
-    function animate() {
-        const elapsed = clock.getElapsedTime();
-
-        group.rotation.y = elapsed * 0.18 + pointerX;
-        group.rotation.x = Math.sin(elapsed * 0.45) * 0.12 + pointerY;
-        core.rotation.z = elapsed * 0.12;
-        wire.rotation.y = -elapsed * 0.16;
-        particles.rotation.y = elapsed * 0.035;
-        particles.rotation.x = Math.sin(elapsed * 0.18) * 0.08;
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}());
+animate();

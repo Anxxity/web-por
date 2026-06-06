@@ -24,7 +24,7 @@
     z-index: 1;
     pointer-events: none;
     background:
-        linear-gradient(105deg, var(--bg-primary) 0%, var(--hero-fade-mid) 42%, var(--hero-fade-soft) 72%, transparent 100%),
+        linear-gradient(105deg, var(--bg-primary) 0%, var(--hero-fade-mid) 36%, var(--hero-fade-soft) 52%, transparent 78%),
         linear-gradient(to bottom, transparent 70%, var(--bg-primary) 100%);
 }
 

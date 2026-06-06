@@ -29,7 +29,7 @@
                     <li><a class="nav-link" href="#projects">Hardware</a></li>
                     <li><a class="nav-link" href="#fivem">FiveM</a></li>
                     <li><a class="nav-link" href="#contact">Contact</a></li>
-                    <li><a class="nav-link" href="./tutorials.html">tutorials</a></li>
+                    <li><a class="nav-link" href="tutorials.html">Tutorials</a></li>
                     <li><a class="nav-link nav-link-external" href="https://github.com/anxxity" target="_blank" rel="noopener">Github</a></li>
                 </ul>
                 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">
@@ -230,8 +230,15 @@
 
     <script src="js/projects-data.js"></script>
     <script src="js/project-loader.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
-    <script src="js/hero-3d.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="js/hero-3d.js"></script>
     <script src="js/script.js?v=contact-20260522"></script>
 </body>
 </html>
