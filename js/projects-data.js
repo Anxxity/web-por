@@ -74,6 +74,7 @@ const fivemProjects = [
       github: "https://github.com/Anxxity/rm_radiolist",
       demo: "https://youtu.be/DnbDkBv0urY",
       category: "experimental",
+      featured: false,
       problem: "Legacy radio list was static and hard to read during busy comms.",
       solution: "Refreshed UI with movable window and color-coded active speakers.",
       result: "Faster callouts for staff and gang radio channels.",

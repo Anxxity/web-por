@@ -182,7 +182,7 @@ function loadFeaturedProjects() {
 
     const featuredFivemProjects = ids
         .map(id => fivemProjects.find(p => p.id === id))
-        .filter(Boolean)
+       .filter(project => project.featured)
         .map(project => ({ ...project, _source: 'fivem' }));
 
     const featuredOtherProjects = otherProjects
