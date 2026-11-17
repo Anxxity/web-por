@@ -37,6 +37,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     box-shadow: var(--shadow-hover);
+    animation: modalContentIn 0.24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .modal-content-lg {

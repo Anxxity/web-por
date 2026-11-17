@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeToggle();
     initNavigation();
     initStickyNavbar();
+    initScrollProgress();
     initSmoothScrolling();
     initFilterBars();
     initProjectFilters();
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initCommandPalette();
     initMagneticButtons();
+    initCardSpotlights();
 });
 
 function initThemeToggle() {
@@ -63,6 +65,22 @@ function initStickyNavbar() {
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+
+    const update = () => {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        bar.style.transform = `scaleX(${progress})`;
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
 }
 
 function initNavigation() {
@@ -369,6 +387,16 @@ function refreshScrollAnimations() {
 
 window.refreshScrollAnimations = refreshScrollAnimations;
 
+function initCardSpotlights() {
+    document.addEventListener('mousemove', (e) => {
+        const card = e.target.closest('.project-card');
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    }, { passive: true });
+}
+
 function initMagneticButtons() {
     document.querySelectorAll('.btn-magnetic').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
@@ -391,7 +419,7 @@ function initCommandPalette() {
 
     const baseCommands = [
         { label: 'View projects', hint: 'Featured', action: () => scrollToId('featured') },
-        { label: 'Open Github', hint: 'External', action: () => window.open('https://github.com/anxxity', '_blank') },
+        { label: 'Open GitHub', hint: 'External', action: () => window.open('https://github.com/anxxity', '_blank') },
         { label: 'Contact', hint: 'Section', action: () => scrollToId('contact') },
         { label: 'Hardware & automation', hint: 'Section', action: () => scrollToId('projects') },
         { label: 'FiveM resources', hint: 'Section', action: () => scrollToId('fivem') }
@@ -449,6 +477,7 @@ function initCommandPalette() {
     }
 
     palette.querySelector('[data-close-palette]')?.addEventListener('click', closePalette);
+    document.getElementById('nav-cmd-btn')?.addEventListener('click', openPalette);
 
     input.addEventListener('input', () => {
         const q = input.value.trim().toLowerCase();
@@ -495,7 +524,7 @@ window.addEventListener('load', function() {
         setTimeout(() => { preloader.style.display = 'none'; }, 450);
     }
 
-    document.querySelectorAll('.reveal').forEach(el => {
+    document.querySelectorAll('.hero .reveal').forEach(el => {
         requestAnimationFrame(() => el.classList.add('is-visible'));
     });
 });

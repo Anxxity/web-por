@@ -6,11 +6,61 @@
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
 }
 
-.skill-item,
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding: 1.15rem 1.2rem;
+    background: var(--subtle-fill);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--card-hover-border);
+    box-shadow: var(--shadow);
+}
+
+.skill-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.skill-name {
+    font-weight: 800;
+    font-size: 1.02rem;
+}
+
+.skill-stack {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+.skill-proof {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-light);
+    line-height: 1.45;
+    margin-top: auto;
+    padding-top: 0.35rem;
+}
+
+.skill-proof span {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
 .contact-item {
     min-height: 58px;
     display: flex;

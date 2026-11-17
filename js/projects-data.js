@@ -18,7 +18,7 @@ const fivemProjects = [
       github: "",
       demo: "https://youtu.be/Sp3mmYRLH04",
       category: "ui",
-      featured: false,
+      featured: true,
       problem: "Default pause menu looked outdated and broke immersion on roleplay servers.",
       solution: "Built a fully custom NUI pause menu with animated panels and framework-aware player data.",
       result: "Servers report stronger brand identity and faster player navigation to settings.",
@@ -102,7 +102,7 @@ const fivemProjects = [
       github: "",
       demo: "https://youtu.be/ksKkO0hUC3c",
       category: "pvp",
-      featured: false,
+      featured: true,
       problem: "Ad-hoc PvP events required manual teleporting and weapon giving.",
       solution: "Shipped a self-serve lobby NUI wired to oxmysql match records.",
       result: "Staff run PvP nights with under 2 minutes setup per event.",
@@ -204,66 +204,74 @@ const fivemProjects = [
 const otherProjects = [
       {
         id: 1,
-        title: "cheap deck",
-        description: "A cheap alternative for stream deck . Cheap deck",
+        title: "Cheap Deck",
+        description: "Custom touchscreen macro deck built with an Arduino Uno and TFT display as a low-cost Stream Deck alternative.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/ChatGPTImageApr16202603_38_37PM.png",
-        technologies: [ "Arduino Uno", "tft touch screen"],
+        technologies: ["Arduino Uno", "TFT Touch Screen", "C++"],
         featured: true,
         features: [
-           "Touchscreen Interface",
-           "Keyboard Shortcuts",
-           "Fully Customizable"
+           "Touchscreen macro grid",
+           "Custom keyboard shortcuts",
+           "Low-cost DIY hardware"
         ],
+        problem: "Commercial macro decks are expensive for basic hotkey and scene-switching workflows.",
+        solution: "Wired a resistive TFT touch display to an Arduino Uno to trigger custom keybinds.",
         github: "https://github.com/Anxxity/cheap-deck",
         demo: "https://youtube.com/shorts/voRVJhqc4ek",
-        category: "Raspberry"
+        category: "Arduino"
      },
      {
         id: 2,
         title: "Eye Tracking Wheelchair",
-        description: "Automated wheelchair controlled via eye-tracking using Raspberry Pi and Arduino.",
+        description: "Hands-free motorized wheelchair controlled via eye gaze using a Raspberry Pi, Arduino, and BTS7960 motor drivers.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/wc.png",
-        technologies: ["Python", "Raspberry Pi", "Arduino", "GazeTracking Library", "MY1016Z2 Motor", "BTS7960 Driver"],
+        technologies: ["Python", "Raspberry Pi", "Arduino", "GazeTracking", "MY1016Z2 Motor", "BTS7960 Driver"],
         featured: true,
         features: [
-            "Real-time eye tracking",
-            "USB communication between Pi and Arduino",
-            "Motor control for mobility"
+            "Real-time eye-gaze direction tracking",
+            "Serial USB bridge between Raspberry Pi and Arduino",
+            "High-current BTS7960 motor driver control"
         ],
-        github: "#",
-        demo: "#",
+        problem: "Standard joystick wheelchairs are unusable for riders with severe upper-body mobility limits.",
+        solution: "Combined GazeTracking on Raspberry Pi with an Arduino motor-control loop over USB serial.",
+        challenges: "Filtering involuntary blinks and head jitter so the MY1016Z2 motors only respond to deliberate gaze holds.",
+        github: "",
+        demo: "",
         category: "Robotics"
     },
     {
         id: 3,
-        title: "Aimee - reception Assistant Robot",
-        description: "AI-powered reception assistant running on Raspberry Pi with voice and display support.",
+        title: "Aimee — Reception Assistant Robot",
+        description: "Interactive reception robot running on Raspberry Pi with voice interaction, display guidance, and LLM responses.",
         image: "https://r2.fivemanage.com/yo0lOUTJkIrY6yOaar2IT/aimee.png",
         technologies: ["Python", "Raspberry Pi", "Google Generative AI"],
         featured: true,
         features: [
-            "Voice interaction",
-            "reception",
-            "Step-by-step guidance"
+            "Voice-driven visitor Q&A",
+            "On-screen reception guidance",
+            "Step-by-step navigation prompts"
         ],
-        github: "#",
-        demo: "#",
+        problem: "Front-desk visitors often wait for basic directions and repetitive FAQ answers.",
+        solution: "Built a Raspberry Pi reception unit pairing speech I/O with Google Generative AI and a local display.",
+        challenges: "Keeping voice-to-response latency low enough for natural lobby conversations.",
+        github: "",
+        demo: "",
         category: "Robotics"
     },
     {
         id: 4,
         title: "Fire Extinguisher Bot",
-        description: "Arduino-based robot that detects and extinguishes fire using sensors and 3D printed components.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Fire+Extinguisher+Bot",
-        technologies: ["Arduino Uno", "ESP", "Temperature & Smoke Sensors", "3D Printing"],
+        description: "Autonomous Arduino robot that detects flame/smoke signatures and activates an onboard extinguisher.",
+        image: "",
+        technologies: ["Arduino Uno", "ESP", "Temp & Smoke Sensors", "3D Printing"],
         featured: false,
         features: [
-            "Real-time fire detection",
-            "Automatic extinguishing",
-            "Remote monitoring"
+            "Multi-sensor flame & smoke detection",
+            "Automated extinguishing trigger",
+            "Remote ESP telemetry"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "Arduino"
     },
     {
@@ -278,75 +286,104 @@ const otherProjects = [
             "Sends real-time alerts",
             "Weather logging"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "Arduino"
     },
     
     {
         id: 6,
         title: "Home Automation System",
-        description: "Arduino-based home automation using relays for controlling appliances.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Home+Automation",
+        description: "Arduino-based home automation controller using relay banks for scheduled and sensor-driven appliance switching.",
+        image: "",
         technologies: ["Arduino Uno", "Relays", "IoT"],
         featured: false,
         features: [
-            "Control home appliances remotely",
+            "Remote relay switching",
             "Automation scheduling",
-            "Integration with sensors"
+            "Sensor-triggered rules"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "Arduino"
     },
     {
         id: 7,
         title: "Beach Cleaning Robot",
-        description: "Autonomous beach cleaning robot with Pixhawk flight controller and Raspberry Pi mission planning.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Beach+Cleaning+Robot",
+        description: "Autonomous beach-cleaning rover combining a Pixhawk flight controller with Raspberry Pi mission planning.",
+        image: "",
         technologies: ["Raspberry Pi", "Pixhawk", "ArduPilot", "Sensors", "Motors"],
         featured: false,
         features: [
-            "Mission planning with Pixhawk",
-            "Autonomous navigation",
-            "Debris collection system"
+            "Waypoint mission planning via Pixhawk",
+            "Autonomous outdoor navigation",
+            "Mechanical debris collection"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "Raspberry"
     },
     {
         id: 8,
         title: "Track Rover",
-        description: "Tracked rover controlled via Raspberry Pi and Arduino for mission-based tasks.",
-        image: "https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Track+Rover",
-        technologies: ["Raspberry Pi", "Arduino Uno", "Motors", "SpeedyBee F405", "Mission Planner"],
+        description: "Tracked UGV controlled via Raspberry Pi, Arduino Uno, and SpeedyBee F405 for mission-based tasks.",
+        image: "",
+        technologies: ["Raspberry Pi", "Arduino Uno", "SpeedyBee F405", "Mission Planner"],
         featured: false,
         features: [
-            "Track-based locomotion",
-            "Remote mission control",
-            "Sensor integration"
+            "Tracked all-terrain locomotion",
+            "Remote Mission Planner control",
+            "Modular sensor payload"
         ],
-        github: "#",
-        demo: "#",
+        github: "",
+        demo: "",
         category: "Raspberry"
     }     
 ];
 
 const skills = [
-    { name: "Robotics & Automation", icon: "fas fa-robot", level: 96 },
-    { name: "Lua", icon: "fab fa-js-square", level: 95 },
-    { name: "Web Development", icon: "fab fa-html5", level: 90 },
-    { name: "Game Development", icon: "fas fa-gamepad", level: 90 },
-    { name: "Python", icon: "fab fa-python", level: 85 },
-    { name: "Server Management", icon: "fas fa-server", level: 85 },
-    { name: "Database Design", icon: "fas fa-database", level: 80 },
+    {
+        name: "Robotics & Embedded",
+        icon: "fas fa-robot",
+        stack: "Arduino • Raspberry Pi • ESP32 • Pixhawk",
+        proof: "Eye-Tracking Wheelchair, Aimee, Track Rover"
+    },
+    {
+        name: "Lua & FiveM Systems",
+        icon: "fas fa-terminal",
+        stack: "ESX • QBCore • QBOX • ox_lib",
+        proof: "RM Pause Menu, rm_multicharacter, PvP System"
+    },
+    {
+        name: "NUI & Frontend UI",
+        icon: "fas fa-layer-group",
+        stack: "HTML • CSS • JavaScript • Three.js",
+        proof: "SO-101 URDF Viewer, rm_radiolist, Leaderboard"
+    },
+    {
+        name: "Python & Hardware I/O",
+        icon: "fab fa-python",
+        stack: "Serial USB • GazeTracking • Voice I/O",
+        proof: "Eye-Tracking Wheelchair, Aimee"
+    },
+    {
+        name: "SQL & Server Data",
+        icon: "fas fa-database",
+        stack: "oxmysql • MySQL • Query Indexing",
+        proof: "PvP Leaderboard, PvP Profile, Safezone Creator"
+    },
+    {
+        name: "3D & CAD / URDF",
+        icon: "fas fa-cubes",
+        stack: "URDF/Xacro • STL Meshes • 3D Printing",
+        proof: "SO-101 Arm Viewer, Fire Extinguisher Bot"
+    }
 ];
 
 
 const stats = [
-    { number: "15+", label: "Projects" },
-    { number: "3+", label: "Years Building" },
+    { number: "15+", label: "Shipped Projects" },
+    { number: "5+", label: "Years Building" },
     { number: "100+", label: "UI Screens" }
 ];
 
@@ -368,8 +405,8 @@ const personalInfo = {
     name: "Remin Mohammed",
     title: "FiveM Systems • UI • Robotics",
     bio: [
-        "I build immersive FiveM systems, custom game interfaces, and robotics projects.",
-        "Focused on performance, clean UI, and scalable architecture."
+        "I build robots and the software that runs them — from an eye-tracking wheelchair to FiveM systems on live servers.",
+        "Focused on clean architecture, responsive interfaces, and builds that hold up in the real world."
     ]
 };
 

@@ -70,6 +70,32 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
+function getProjectFallbackImage(project) {
+    const title = (project.title || 'Hardware Build').slice(0, 34);
+    const cat = (project.category || 'Robotics').toUpperCase();
+    const stack = (project.technologies || []).slice(0, 3).join(' · ') || 'Embedded Hardware';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+        <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0b1222"/>
+                <stop offset="100%" stop-color="#132238"/>
+            </linearGradient>
+            <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(45,212,191,0.12)" stroke-width="1"/>
+            </pattern>
+        </defs>
+        <rect width="640" height="360" fill="url(#bg)"/>
+        <rect width="640" height="360" fill="url(#grid)"/>
+        <rect x="28" y="28" width="584" height="304" rx="14" fill="none" stroke="rgba(96,165,250,0.28)" stroke-width="1.5"/>
+        <circle cx="52" cy="54" r="5" fill="#14b8a6"/>
+        <text x="68" y="59" fill="#2dd4bf" font-family="system-ui,sans-serif" font-size="13" font-weight="700" letter-spacing="2">${escapeHtml(cat)} // HARDWARE SPEC</text>
+        <text x="48" y="185" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="30" font-weight="800">${escapeHtml(title)}</text>
+        <text x="48" y="222" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="16" font-weight="600">${escapeHtml(stack)}</text>
+        <text x="48" y="302" fill="#64748b" font-family="system-ui,sans-serif" font-size="12" font-weight="600">PHOTOS PENDING · CLICK FOR FULL BUILD DETAILS</text>
+    </svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function buildProjectCard(project, options = {}) {
     const { featured = false } = options;
     const card = document.createElement('article');
@@ -93,7 +119,8 @@ function buildProjectCard(project, options = {}) {
         `<li>${escapeHtml(f)}</li>`
     ).join('');
 
-    const thumb = getYouTubeThumb(project.demo) || project.image;
+    const fallbackImg = getProjectFallbackImage(project);
+    const thumb = getYouTubeThumb(project.demo) || project.image || fallbackImg;
     const hasVideo = Boolean(getYouTubeId(project.demo));
 
     const version = project.version
@@ -126,6 +153,10 @@ function buildProjectCard(project, options = {}) {
         </div>
     `;
 
+    card.querySelector('.project-media img')?.addEventListener('error', function() {
+        if (this.src !== fallbackImg) this.src = fallbackImg;
+    });
+
     return card;
 }
 
@@ -151,7 +182,8 @@ function createProjectCard(project) {
         `<li>${escapeHtml(f)}</li>`
     ).join('');
 
-    const thumb = getYouTubeThumb(project.demo) || project.image;
+    const fallbackImg = getProjectFallbackImage(project);
+    const thumb = getYouTubeThumb(project.demo) || project.image || fallbackImg;
 
     card.innerHTML = `
         <div class="project-media">
@@ -168,6 +200,10 @@ function createProjectCard(project) {
         </div>
     `;
 
+    card.querySelector('.project-media img')?.addEventListener('error', function() {
+        if (this.src !== fallbackImg) this.src = fallbackImg;
+    });
+
     return card;
 }
 
@@ -182,7 +218,7 @@ function loadFeaturedProjects() {
 
     const featuredFivemProjects = ids
         .map(id => fivemProjects.find(p => p.id === id))
-       .filter(project => project.featured)
+        .filter(project => project && project.featured)
         .map(project => ({ ...project, _source: 'fivem' }));
 
     const featuredOtherProjects = otherProjects
@@ -258,9 +294,9 @@ function findProjectById(id, source) {
 function buildModalHtml(project) {
     const videoId = getYouTubeId(project.demo);
     const embedUrl = videoId ? getYouTubeEmbedUrl(videoId) : null;
-   console.log(embedUrl)
+    const fallbackImg = getProjectFallbackImage(project);
+    const heroImg = project.image || fallbackImg;
     const videoBlock = embedUrl
-    
         ? `<div class="modal-video">
             <iframe
                 src="${embedUrl}"
@@ -272,7 +308,7 @@ function buildModalHtml(project) {
             ></iframe>
            </div>`
         : `<div class="modal-video modal-video-fallback">
-            <img src="${project.image}" alt="${escapeHtml(project.title)}">
+            <img src="${heroImg}" alt="${escapeHtml(project.title)}">
            </div>`;
 
     const gallery = (project.gallery || [project.image]).filter(Boolean);
@@ -354,7 +390,12 @@ function openProjectModal(project) {
     document.body.classList.add('modal-open');
 
     const modal = shell.querySelector('.project-modal');
+    const onEscape = e => {
+        if (e.key === 'Escape') closeModal();
+    };
+
     const closeModal = () => {
+        document.removeEventListener('keydown', onEscape);
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
         shell.setAttribute('aria-hidden', 'true');
@@ -367,7 +408,6 @@ function openProjectModal(project) {
 
     shell.querySelectorAll('.gallery-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
-            const img = shell.querySelector('.modal-video-fallback img, .modal-video iframe');
             if (btn.dataset.full) {
                 const preview = shell.querySelector('.modal-video');
                 if (preview) {
@@ -378,12 +418,6 @@ function openProjectModal(project) {
         });
     });
 
-    const onEscape = e => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', onEscape);
-        }
-    };
     document.addEventListener('keydown', onEscape);
 }
 
@@ -423,16 +457,24 @@ function loadSkills() {
 
     grids.forEach(skillsGrid => {
         skillsGrid.innerHTML = '';
-        skills.forEach(skill => {
+        skills.forEach((skill, i) => {
             const skillItem = document.createElement('div');
-            skillItem.className = 'skill-item';
+            skillItem.className = 'skill-item reveal-stagger';
+            skillItem.style.transitionDelay = `${Math.min(i * 0.06, 0.36)}s`;
             skillItem.innerHTML = `
-                <i class="${skill.icon}"></i>
-                <span>${escapeHtml(skill.name)}</span>
+                <div class="skill-head">
+                    <i class="${skill.icon}" aria-hidden="true"></i>
+                    <span class="skill-name">${escapeHtml(skill.name)}</span>
+                </div>
+                ${skill.stack ? `<p class="skill-stack">${escapeHtml(skill.stack)}</p>` : ''}
+                ${skill.proof ? `<p class="skill-proof"><span>Used in:</span> ${escapeHtml(skill.proof)}</p>` : ''}
             `;
             skillsGrid.appendChild(skillItem);
         });
     });
+    if (typeof window.refreshScrollAnimations === 'function') {
+        window.refreshScrollAnimations();
+    }
 }
 
 function loadStats() {
@@ -537,6 +579,10 @@ function createTutorialCard(tutorial) {
             </a>
         </div>
     `;
+
+    card.querySelector('.project-media img')?.addEventListener('error', function() {
+        if (this.src !== fallbackImg) this.src = fallbackImg;
+    });
 
     return card;
 }
