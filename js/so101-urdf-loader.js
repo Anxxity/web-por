@@ -110,13 +110,20 @@ function getMaterial(name, materials, cache) {
   return mat;
 }
 
-async function loadLinkVisuals(link, urdfMaterials, stlLoader, matCache) {
+async function loadLinkVisuals(link, urdfMaterials, stlLoader, matCache, geoCache) {
   const tasks = link.visuals.map(async (vis) => {
     const holder = new THREE.Group();
     applyOrigin(holder, vis.origin);
 
-    const geometry = await stlLoader.loadAsync(vis.mesh);
-    geometry.computeVertexNormals();
+    let geometryPromise = geoCache.get(vis.mesh);
+    if (!geometryPromise) {
+      geometryPromise = stlLoader.loadAsync(vis.mesh).then((geo) => {
+        geo.computeVertexNormals();
+        return geo;
+      });
+      geoCache.set(vis.mesh, geometryPromise);
+    }
+    const geometry = await geometryPromise;
 
     const mesh = new THREE.Mesh(geometry, getMaterial(vis.material, urdfMaterials, matCache));
     mesh.castShadow = true;
@@ -135,17 +142,21 @@ export async function buildSo101Arm(options = {}) {
 
   const stlLoader = new STLLoader();
   const matCache = new Map();
+  const geoCache = new Map();
   const linkGroups = {};
   const jointNodes = {};
 
-  for (const [name, link] of Object.entries(urdf.links)) {
-    if (name === 'world') continue;
-    const group = new THREE.Group();
-    group.name = name;
-    const visuals = await loadLinkVisuals(link, urdf.materials, stlLoader, matCache);
-    visuals.forEach((v) => group.add(v));
-    linkGroups[name] = group;
-  }
+  await Promise.all(
+    Object.entries(urdf.links)
+      .filter(([name]) => name !== 'world')
+      .map(async ([name, link]) => {
+        const group = new THREE.Group();
+        group.name = name;
+        const visuals = await loadLinkVisuals(link, urdf.materials, stlLoader, matCache, geoCache);
+        visuals.forEach((v) => group.add(v));
+        linkGroups[name] = group;
+      })
+  );
 
   for (const joint of urdf.joints) {
     const origin = new THREE.Group();

@@ -41,6 +41,9 @@ function resize() {
   camera.updateProjectionMatrix();
 }
 window.addEventListener('resize', resize);
+if ('ResizeObserver' in window && canvas.parentElement) {
+  new ResizeObserver(resize).observe(canvas.parentElement);
+}
 resize();
 
 // Engineering CAD grid & shadow floor
@@ -141,7 +144,12 @@ let lastHudUpdate = 0;
 const armStage = new THREE.Group();
 scene.add(armStage);
 
-if (prefersReducedMotion || isCompactViewport) {
+if (window.location.protocol === 'file:') {
+  if (armHud) armHud.classList.add('is-ready');
+  if (armHudText) {
+    armHudText.textContent = 'Open via http:// server to load 3D URDF';
+  }
+} else if (prefersReducedMotion || isCompactViewport) {
   if (armHud) armHud.classList.add('is-ready');
   if (armHudText) {
     armHudText.textContent = 'SO-101 6-DOF · URDF/STL (Desktop 3D)';
@@ -161,7 +169,7 @@ if (prefersReducedMotion || isCompactViewport) {
     })
     .catch((err) => {
       console.warn('Arm load failed:', err);
-      if (armHudText) armHudText.textContent = 'SO-101 URDF';
+      if (armHudText) armHudText.textContent = `SO-101 error: ${err.message || 'load failed'}`;
     });
 }
 
