@@ -40,7 +40,8 @@
     transition-delay: var(--hero-delay, 0s);
 }
 
-.hero-content.is-visible .hero-anim {
+.hero-content.is-visible .hero-anim,
+.hero-anim.is-visible {
     opacity: 1;
     transform: none;
 }

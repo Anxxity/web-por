@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Orbit Workspace — Secret Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages/todo.css">
+</head>
+<body>
+    <div class="todo-shell">
+        <aside class="todo-sidebar" aria-label="Workspace navigation">
+            <div class="todo-brand">
+                <div class="todo-brand-left">
+                    <span class="todo-orbit-dot" aria-hidden="true"></span>
+                    <span>Orbit</span>
+                </div>
+                <span class="todo-badge-secret">Secret</span>
+            </div>
+
+            <div class="todo-nav-group">
+                <span class="todo-nav-label">Views</span>
+                <button type="button" class="todo-nav-btn is-active" data-view="board">
+                    <span><i class="fas fa-columns"></i> Board</span>
+                    <span class="count" id="count-all">0</span>
+                </button>
+                <button type="button" class="todo-nav-btn" data-view="list">
+                    <span><i class="fas fa-list"></i> List</span>
+                    <span class="count" id="count-open">0</span>
+                </button>
+            </div>
+
+            <div class="todo-nav-group">
+                <span class="todo-nav-label">Filter by Label</span>
+                <button type="button" class="todo-nav-btn is-active" data-label-filter="all">
+                    <span>All Issues</span>
+                </button>
+                <button type="button" class="todo-nav-btn" data-label-filter="Robotics">
+                    <span>Robotics</span>
+                </button>
+                <button type="button" class="todo-nav-btn" data-label-filter="FiveM">
+                    <span>FiveM</span>
+                </button>
+                <button type="button" class="todo-nav-btn" data-label-filter="UI">
+                    <span>UI / NUI</span>
+                </button>
+                <button type="button" class="todo-nav-btn" data-label-filter="GitHub">
+                    <span>GitHub Issues</span>
+                </button>
+            </div>
+
+            <div class="todo-sidebar-footer">
+                <div class="sync-pill" id="git-sync-status">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span>Git: Local only</span>
+                </div>
+                <button type="button" class="todo-btn" id="open-git-modal">
+                    <i class="fab fa-github"></i> Git &amp; AI Settings
+                </button>
+                <a href="index.html" class="todo-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </aside>
+
+        <main class="todo-main">
+            <header class="todo-topbar">
+                <div class="todo-topbar-left">
+                    <div class="todo-search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="search" id="todo-search-input" placeholder="Search issues…" autocomplete="off">
+                    </div>
+                </div>
+                <div class="todo-topbar-actions">
+                    <button type="button" class="todo-btn todo-btn-accent" id="open-ai-modal">
+                        <i class="fas fa-wand-magic-sparkles"></i> AI Planner
+                    </button>
+                    <button type="button" class="todo-btn" id="git-pull-btn" title="Pull tasks & issues from GitHub">
+                        <i class="fas fa-cloud-arrow-down"></i> Pull Git
+                    </button>
+                    <button type="button" class="todo-btn todo-btn-primary" id="git-push-btn" title="Commit todo-state.json to GitHub">
+                        <i class="fas fa-code-commit"></i> Push to Git
+                    </button>
+                    <button type="button" class="todo-btn" id="todo-theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="todo-theme-icon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <section class="todo-analytics" aria-label="Sprint analytics">
+                <div class="analytics-card">
+                    <span>Total Issues</span>
+                    <strong id="stat-total">0</strong>
+                </div>
+                <div class="analytics-card">
+                    <span>In Progress</span>
+                    <strong id="stat-progress">0</strong>
+                </div>
+                <div class="analytics-card">
+                    <span>Completed</span>
+                    <strong id="stat-done">0</strong>
+                </div>
+                <div class="analytics-card">
+                    <span>Sprint Velocity</span>
+                    <strong id="stat-velocity">0%</strong>
+                </div>
+            </section>
+
+            <form class="todo-quick-add" id="todo-quick-add">
+                <input type="text" id="new-task-title" placeholder="New task title (e.g. Fix auth bug on Astra)…" required>
+                <select id="new-task-parent" aria-label="Assign as sub-task of">
+                    <option value="">Main task (no parent)</option>
+                </select>
+                <select id="new-task-status" aria-label="Status">
+                    <option value="backlog">Backlog</option>
+                    <option value="todo" selected>Todo</option>
+                    <option value="progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+                <select id="new-task-priority" aria-label="Priority">
+                    <option value="urgent">Urgent</option>
+                    <option value="high">High</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <select id="new-task-label" aria-label="Label">
+                    <option value="Robotics">Robotics</option>
+                    <option value="FiveM">FiveM</option>
+                    <option value="UI">UI</option>
+                    <option value="General">General</option>
+                </select>
+                <button type="submit" class="todo-btn todo-btn-primary">
+                    <i class="fas fa-plus"></i> Add Issue
+                </button>
+            </form>
+
+            <section class="todo-board" id="todo-board" aria-label="Kanban board">
+                <div class="board-col" data-status="backlog">
+                    <div class="board-col-head">
+                        <span class="board-col-title"><span class="col-dot col-dot-backlog"></span> Backlog</span>
+                        <span class="board-col-count" id="col-count-backlog">0</span>
+                    </div>
+                    <div class="board-col-list" data-col-list="backlog"></div>
+                </div>
+                <div class="board-col" data-status="todo">
+                    <div class="board-col-head">
+                        <span class="board-col-title"><span class="col-dot col-dot-todo"></span> Todo</span>
+                        <span class="board-col-count" id="col-count-todo">0</span>
+                    </div>
+                    <div class="board-col-list" data-col-list="todo"></div>
+                </div>
+                <div class="board-col" data-status="progress">
+                    <div class="board-col-head">
+                        <span class="board-col-title"><span class="col-dot col-dot-progress"></span> In Progress</span>
+                        <span class="board-col-count" id="col-count-progress">0</span>
+                    </div>
+                    <div class="board-col-list" data-col-list="progress"></div>
+                </div>
+                <div class="board-col" data-status="done">
+                    <div class="board-col-head">
+                        <span class="board-col-title"><span class="col-dot col-dot-done"></span> Done</span>
+                        <span class="board-col-count" id="col-count-done">0</span>
+                    </div>
+                    <div class="board-col-list" data-col-list="done"></div>
+                </div>
+            </section>
+
+            <section class="todo-list-view" id="todo-list-view" hidden aria-label="Issue list view"></section>
+        </main>
+    </div>
+
+    <!-- Git & AI Settings Modal -->
+    <div class="todo-modal" id="git-modal" hidden role="dialog" aria-modal="true" aria-label="Git and AI Settings">
+        <div class="todo-modal-card">
+            <div class="todo-modal-head">
+                <h3><i class="fab fa-github"></i> Git &amp; AI Connection</h3>
+                <button type="button" class="todo-btn" data-close-modal="git-modal">&times;</button>
+            </div>
+            <p class="todo-hint">Keys are stored <strong>only in your browser's localStorage</strong> and never committed to code. Use a fine-grained GitHub PAT with <code>Contents</code> + <code>Issues</code> read/write access.</p>
+            <div class="todo-field">
+                <label for="cfg-repo">GitHub Repository (owner/repo)</label>
+                <input type="text" id="cfg-repo" placeholder="Anxxity/web-por" value="Anxxity/web-por">
+            </div>
+            <div class="todo-field">
+                <label for="cfg-branch">Branch</label>
+                <input type="text" id="cfg-branch" placeholder="main" value="main">
+            </div>
+            <div class="todo-field">
+                <label for="cfg-file">Sync File Path in Repo</label>
+                <input type="text" id="cfg-file" placeholder="data/orbit-todos.json" value="data/orbit-todos.json">
+            </div>
+            <div class="todo-field">
+                <label for="cfg-pat">GitHub Personal Access Token (PAT)</label>
+                <input type="password" id="cfg-pat" placeholder="github_pat_...">
+            </div>
+            <hr style="border:0;border-top:1px solid var(--border-color)">
+            <div class="todo-field">
+                <label for="cfg-ai-url">AI Endpoint (OpenAI-compatible / OpenRouter / Groq)</label>
+                <input type="text" id="cfg-ai-url" placeholder="https://api.openai.com/v1/chat/completions">
+            </div>
+            <div class="todo-field">
+                <label for="cfg-ai-model">AI Model</label>
+                <input type="text" id="cfg-ai-model" placeholder="gpt-4o-mini">
+            </div>
+            <div class="todo-field">
+                <label for="cfg-ai-key">AI API Key (optional — falls back to local planner)</label>
+                <input type="password" id="cfg-ai-key" placeholder="sk-...">
+            </div>
+            <div style="display:flex;gap:0.6rem;justify-content:flex-end;flex-wrap:wrap">
+                <button type="button" class="todo-btn" id="import-issues-btn">Import GitHub Issues</button>
+                <button type="button" class="todo-btn todo-btn-primary" id="save-settings-btn">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Planner Modal -->
+    <div class="todo-modal" id="ai-modal" hidden role="dialog" aria-modal="true" aria-label="AI Task Planner">
+        <div class="todo-modal-card">
+            <div class="todo-modal-head">
+                <h3><i class="fas fa-wand-magic-sparkles"></i> AI Task Breakdown &amp; Triage</h3>
+                <button type="button" class="todo-btn" data-close-modal="ai-modal">&times;</button>
+            </div>
+            <div class="todo-field">
+                <label for="ai-goal-input">Describe a goal or feature to break into issues</label>
+                <textarea id="ai-goal-input" rows="3" placeholder="e.g. Build ROS 2 URDF control + real photo gallery for Eye-Tracking Wheelchair"></textarea>
+            </div>
+            <div style="display:flex;gap:0.55rem;flex-wrap:wrap">
+                <button type="button" class="todo-btn todo-btn-primary" id="ai-generate-btn">
+                    <i class="fas fa-bolt"></i> Generate Issues
+                </button>
+                <button type="button" class="todo-btn" id="ai-triage-btn">
+                    <i class="fas fa-compass"></i> Suggest Next Priority
+                </button>
+            </div>
+            <div class="ai-output-list" id="ai-output-list"></div>
+        </div>
+    </div>
+
+    <!-- Issue Detail & Sub-tasks Modal -->
+    <div class="todo-modal" id="task-detail-modal" hidden role="dialog" aria-modal="true" aria-label="Task Details">
+        <div class="todo-modal-card">
+            <div class="todo-modal-head">
+                <h3 id="detail-task-id">ORB-1</h3>
+                <button type="button" class="todo-btn" data-close-modal="task-detail-modal">&times;</button>
+            </div>
+            <div class="todo-field">
+                <label for="detail-title">Title</label>
+                <input type="text" id="detail-title">
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.7rem">
+                <div class="todo-field">
+                    <label for="detail-parent">Parent Task (make this a sub-task of)</label>
+                    <select id="detail-parent"></select>
+                </div>
+                <div class="todo-field">
+                    <label for="detail-status">Status</label>
+                    <select id="detail-status">
+                        <option value="backlog">Backlog</option>
+                        <option value="todo">Todo</option>
+                        <option value="progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="todo-field">
+                    <label for="detail-priority">Priority</label>
+                    <select id="detail-priority">
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="todo-field">
+                    <label for="detail-label">Label</label>
+                    <select id="detail-label">
+                        <option value="Robotics">Robotics</option>
+                        <option value="FiveM">FiveM</option>
+                        <option value="UI">UI</option>
+                        <option value="General">General</option>
+                        <option value="GitHub">GitHub</option>
+                    </select>
+                </div>
+            </div>
+            <div class="todo-field">
+                <label>Sub-tasks under this task</label>
+                <div id="detail-subtasks-list" style="display:flex;flex-direction:column;gap:0.4rem"></div>
+                <div style="display:flex;gap:0.5rem;margin-top:0.35rem">
+                    <input type="text" id="detail-new-subtask" placeholder="Create a linked sub-task…" style="flex:1">
+                    <button type="button" class="todo-btn" id="detail-add-subtask-btn">+ Add Sub-task</button>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:0.55rem">
+                <button type="button" class="todo-btn todo-btn-primary" id="detail-save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/todo-app.js"></script>
+</body>
+</html>

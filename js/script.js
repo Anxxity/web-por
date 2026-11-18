@@ -524,7 +524,7 @@ window.addEventListener('load', function() {
         setTimeout(() => { preloader.style.display = 'none'; }, 450);
     }
 
-    document.querySelectorAll('.hero .reveal').forEach(el => {
+    document.querySelectorAll('.hero .reveal, .hero .hero-anim').forEach(el => {
         requestAnimationFrame(() => el.classList.add('is-visible'));
     });
 });
