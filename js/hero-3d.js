@@ -149,16 +149,18 @@ if (window.location.protocol === 'file:') {
   if (armHudText) {
     armHudText.textContent = 'Open via http:// server to load 3D URDF';
   }
-} else if (isCompactViewport) {
-  if (armHud) armHud.classList.add('is-ready');
-  if (armHudText) {
-    armHudText.textContent = 'SO-101 6-DOF · URDF/STL (Desktop 3D)';
-  }
 } else {
   if (prefersReducedMotion) {
     armMode = 'home';
   }
-  buildSo101Arm({ targetHeight: 5.2 })
+  buildSo101Arm({
+    targetHeight: 5.2,
+    onProgress: (loaded, total) => {
+      if (armHudText) {
+        armHudText.textContent = `Loading SO-101 meshes (${loaded}/${total})…`;
+      }
+    }
+  })
     .then((arm) => {
       robot = arm;
       robot.alignBaseToFloor(0);

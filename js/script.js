@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.hero .reveal, .hero .hero-anim').forEach(el => {
+        requestAnimationFrame(() => el.classList.add('is-visible'));
+    });
     initThemeToggle();
     initNavigation();
     initStickyNavbar();
